@@ -86,7 +86,7 @@
                         
                         <li class="current">
                             <a class="sidebar-root-link" href="https://nscc-neuro.github.io/nest-guide/docs/nest-guide/">
-                                <i class="material-icons me-2">menu_book</i>
+                                <i class="material-icons me-2">rocket_launch</i>
                                 
                                 NEST 集群部署文档
                             </a>
@@ -297,7 +297,169 @@
                                             
     
     <div data-prismjs-copy="" data-prismjs-copy-success="" data-prismjs-copy-error="">
-        <h2 id="1-设置内网-vpn">1. 设置内网 VPN <a href="#1-%e8%ae%be%e7%bd%ae%e5%86%85%e7%bd%91-vpn" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="2-登录集群">2. 登录集群 <a href="#2-%e7%99%bb%e5%bd%95%e9%9b%86%e7%be%a4" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="3-设置外网代理">3. 设置外网代理 <a href="#3-%e8%ae%be%e7%bd%ae%e5%a4%96%e7%bd%91%e4%bb%a3%e7%90%86" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="4-安装-miniconda3">4. 安装 Miniconda3 <a href="#4-%e5%ae%89%e8%a3%85-miniconda3" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="5-安装-boost">5. 安装 Boost <a href="#5-%e5%ae%89%e8%a3%85-boost" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="6-安装-gnu-scientific-library">6. 安装 GNU Scientific Library <a href="#6-%e5%ae%89%e8%a3%85-gnu-scientific-library" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="7-安装-nest">7. 安装 NEST <a href="#7-%e5%ae%89%e8%a3%85-nest" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="8-运行-hpc_benchmark">8. 运行 hpc_benchmark <a href="#8-%e8%bf%90%e8%a1%8c-hpc_benchmark" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2>
+        <h2 id="1-设置内网-vpn">1. 设置内网 VPN <a href="#1-%e8%ae%be%e7%bd%ae%e5%86%85%e7%bd%91-vpn" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://www.hillstonenet.com.cn/support-and-training/hillstone-secure-connect/" rel="external" target="_blank">Hillstone Secure Connect<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载最新版的支持 SSL VPN 功能的客户端。</p>
+<p>
+
+
+
+
+
+  
+
+
+
+  
+    
+      <img src="/nest-guide/20230918231257-2023-09-18_4548504225650660847.png" alt="20230918231257-2023-09-18" width="1900" height="565" loading="lazy">
+    
+  
+</p>
+<p>输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。</p>
+<p>图片暂时略</p>
+<h2 id="2-登录集群">2. 登录集群 <a href="#2-%e7%99%bb%e5%bd%95%e9%9b%86%e7%be%a4" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>此部分缺少具体步骤，请补充。</p>
+<h2 id="3-设置外网代理">3. 设置外网代理 <a href="#3-%e8%ae%be%e7%bd%ae%e5%a4%96%e7%bd%91%e4%bb%a3%e7%90%86" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>在环境变量中配置：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="b9c1cdb" class="language-shell ">
+  <code>export http_proxy=http://10.20.18.21:3128
+export HTTP_PROXY=http://10.20.18.21:3128
+export https_proxy=http://10.20.18.21:3128
+export HTTPS_PROXY=http://10.20.18.21:3128
+export no_proxy=&#34;localhost,127.0.0.1&#34;</code>
+  </pre>
+  </div>
+<p>在命令行配置：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="2841c72" class="language- ">
+  <code>git config --global http.proxy http://10.20.18.21:3128
+git config --global https.proxy http://10.20.18.21:3128</code>
+  </pre>
+  </div>
+<h2 id="4-安装-miniconda3">4. 安装 Miniconda3 <a href="#4-%e5%ae%89%e8%a3%85-miniconda3" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://repo.anaconda.com/miniconda/Miniconda3-py39_23.5.2-0-Linux-x86_64.sh" rel="external" target="_blank">Miniconda3 官方网站<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 Miniconda3。</p>
+<p>执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。</p>
+<h2 id="5-安装-boost">5. 安装 Boost <a href="#5-%e5%ae%89%e8%a3%85-boost" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.gz" rel="external" target="_blank">Boost 官方网站<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 Boost。</p>
+<p>解压 boost_1_77_0.tar.gz 文件。</p>
+<p>在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="6d42b9e" class="language- ">
+  <code>./bootstrap.sh --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0 CC=gcc CXX=g&#43;&#43; FC=gfortran CFLAGS=&#39;-O3&#39; CXXFLAGS=&#39;-O3&#39; FCFLAGS=&#39;-O3&#39;</code>
+  </pre>
+  </div>
+<h2 id="6-安装-gnu-scientific-library">6. 安装 GNU Scientific Library <a href="#6-%e5%ae%89%e8%a3%85-gnu-scientific-library" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz" rel="external" target="_blank">GNU Scientific Library 镜像站<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 GSL。</p>
+<p>解压 gsl-latest.tar.gz。</p>
+<p>在 GSL 根目录执行以下命令安装 GSL（需要将路径换成自己的安装路径）：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="5493808" class="language- ">
+  <code>./configure --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-8.4.0 CC=gcc CXX=g&#43;&#43; FC=gfortran CFLAGS=&#39;-O3&#39; CXXFLAGS=&#39;-O3&#39; FCFLAGS=&#39;-O3&#39;</code>
+  </pre>
+  </div>
+<h2 id="7-安装-nest">7. 安装 NEST <a href="#7-%e5%ae%89%e8%a3%85-nest" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://github.com/nest/nest-simulator/archive/refs/tags/v3.4.tar.gz" rel="external" target="_blank">NEST github仓库<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 NEST 3.4。</p>
+<p>解压 v3.4.tar.gz。</p>
+<p>使用 pip 安装 numpy, scipy, cython:</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="5c84fac" class="language- ">
+  <code>pip3 install numpy scipy cython</code>
+  </pre>
+  </div>
+<p>在 nest-simulator-3.4 目录下执行（需要将路径换成自己的路径）：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="538cb4a" class="language- ">
+  <code>cmake -DCMAKE_C_COMPILER=mpicc \
+      -DCMAKE_CXX_COMPILER=mpicxx \
+      -Dwith-mpi=/GPUFS/sysu_hpcscc_1/lvtx/tools/mvapich2/2.3.7-gcc-12.2.0/bin/mpiexec \
+      -DCMAKE_C_FLAGS=&#39;-O3 -fPIC&#39; \
+      -DCMAKE_CXX_FLAGS=&#39;-O3&#39; \
+      -Dwith-boost=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0/ \
+      -DGSL_INCLUDE_DIR=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/include \
+      -DGSL_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgsl.a \
+      -DGSL_CBLAS_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgslcblas.a \
+      -DCMAKE_INSTALL_PREFIX:PATH=/GPUFS/sysu_hpcscc_1/lvtx/tools/nest-simulator/3.0-gcc-12.2.0 .</code>
+  </pre>
+  </div>
+<h2 id="8-运行-hpc_benchmark">8. 运行 hpc_benchmark <a href="#8-%e8%bf%90%e8%a1%8c-hpc_benchmark" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2>
     </div>
 
     
@@ -334,9 +496,9 @@
     <div id="last-modified" class="mt-1">
         <p class="mb-0 fw-semibold">Last updated <span
             id="relativetime"
-            data-authdate="2023-09-18T22:56:57&#43;0800"
-            title="18 Sep 2023, 22:56 &#43;0800">
-            18 Sep 2023, 22:56 &#43;0800
+            data-authdate="2023-09-18T23:32:18&#43;0800"
+            title="18 Sep 2023, 23:32 &#43;0800">
+            18 Sep 2023, 23:32 &#43;0800
         </span>. <span class="material-icons size-20 align-text-bottom opacity-75">history</span>
         </p>
     </div>
@@ -544,8 +706,8 @@
                 id:  1 ,
                 href: "\/nest-guide\/docs\/nest-guide\/",
                 title: "NEST 集群部署文档",
-                description: "1. 设置内网 VPN link2. 登录集群 link3. 设置外网代理 link4. 安装 Miniconda3 link5. 安装 Boost link6. 安装 GNU Scientific Library link7. 安装 NEST link8. 运行 hpc_benchmark link",
-                content: "1. 设置内网 VPN link2. 登录集群 link3. 设置外网代理 link4. 安装 Miniconda3 link5. 安装 Boost link6. 安装 GNU Scientific Library link7. 安装 NEST link8. 运行 hpc_benchmark link"
+                description: "1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。\n输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。\n图片暂时略\n2. 登录集群 link此部分缺少具体步骤，请补充。\n3. 设置外网代理 link在环境变量中配置：\nexport http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=\"localhost,127.0.0.1\" 在命令行配置：\ngit config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 4. 安装 Miniconda3 link从 Miniconda3 官方网站 下载 Miniconda3。\n执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。\n5. 安装 Boost link从 Boost 官方网站 下载 Boost。\n解压 boost_1_77_0.tar.gz 文件。\n在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：",
+                content: "1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。\n输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。\n图片暂时略\n2. 登录集群 link此部分缺少具体步骤，请补充。\n3. 设置外网代理 link在环境变量中配置：\nexport http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=\"localhost,127.0.0.1\" 在命令行配置：\ngit config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 4. 安装 Miniconda3 link从 Miniconda3 官方网站 下载 Miniconda3。\n执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。\n5. 安装 Boost link从 Boost 官方网站 下载 Boost。\n解压 boost_1_77_0.tar.gz 文件。\n在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：\n./bootstrap.sh --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3' 6. 安装 GNU Scientific Library link从 GNU Scientific Library 镜像站 下载 GSL。\n解压 gsl-latest.tar.gz。\n在 GSL 根目录执行以下命令安装 GSL（需要将路径换成自己的安装路径）：\n./configure --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-8.4.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3' 7. 安装 NEST link从 NEST github仓库 下载 NEST 3.4。\n解压 v3.4.tar.gz。\n使用 pip 安装 numpy, scipy, cython:\npip3 install numpy scipy cython 在 nest-simulator-3.4 目录下执行（需要将路径换成自己的路径）：\ncmake -DCMAKE_C_COMPILER=mpicc \\ -DCMAKE_CXX_COMPILER=mpicxx \\ -Dwith-mpi=/GPUFS/sysu_hpcscc_1/lvtx/tools/mvapich2/2.3.7-gcc-12.2.0/bin/mpiexec \\ -DCMAKE_C_FLAGS='-O3 -fPIC' \\ -DCMAKE_CXX_FLAGS='-O3' \\ -Dwith-boost=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0/ \\ -DGSL_INCLUDE_DIR=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/include \\ -DGSL_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgsl.a \\ -DGSL_CBLAS_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgslcblas.a \\ -DCMAKE_INSTALL_PREFIX:PATH=/GPUFS/sysu_hpcscc_1/lvtx/tools/nest-simulator/3.0-gcc-12.2.0 . 8. 运行 hpc_benchmark link"
             }
         );
     search.addEventListener('input', show_results, true);
