@@ -1,6 +1,6 @@
 ---
-weight: 10
-title: "Documentation"
+weight: 1
+title: "NEST 集群部署文档"
 description: ""
 icon: menu_book
 lead: ""
