@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NEST 集群部署文档</title>
+    <link>https://nscc-neuro.github.io/nest-guide/</link>
+    <description>Recent content on NEST 集群部署文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 17 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://nscc-neuro.github.io/nest-guide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NEST 集群部署文档</title>
+      <link>https://nscc-neuro.github.io/nest-guide/docs/nest-guide/</link>
+      <pubDate>Sun, 17 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://nscc-neuro.github.io/nest-guide/docs/nest-guide/</guid>
+      <description>1. 设置内网 VPN link2. 登录集群 link3. 设置外网代理 link4. 安装 Miniconda3 link5. 安装 Boost link6. 安装 GNU Scientific Library link7. 安装 NEST link8. 运行 hpc_benchmark link</description>
+    </item>
+    
+  </channel>
+</rss>

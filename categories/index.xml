@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on NEST 集群部署文档</title>
+    <link>https://nscc-neuro.github.io/nest-guide/categories/</link>
+    <description>Recent content in Categories on NEST 集群部署文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language><atom:link href="https://nscc-neuro.github.io/nest-guide/categories/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
