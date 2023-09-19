@@ -10,7 +10,6 @@ const format = (doc) => {
     let body = doc.body;
     let date = doc.properties.date;
     let title = doc.title;
-    let author = doc.author;
 
     // weight 用时间戳
     console.log(date);
@@ -24,7 +23,7 @@ const format = (doc) => {
     weight: ${weight}
     date: ${date}
     draft: false
-    author: ${author}
+    author: nscc-neuro
     title: ${title}
     icon: menu_book
     toc: true
