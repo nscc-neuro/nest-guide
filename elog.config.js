@@ -7,7 +7,7 @@ module.exports = {
       login: process.env.YUQUE_LOGIN,
       repo: process.env.YUQUE_REPO,
       onlyPublic: false,
-      onlyPublished: false,
+      onlyPublished: true,
     },
     'yuque-pwd': {
       username: process.env.YUQUE_USERNAME,
