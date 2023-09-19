@@ -262,11 +262,25 @@
         <li><a href="#连接集群">连接集群</a>
           <ul>
             <li><a href="#vpn-连接方式">VPN 连接方式</a></li>
+            <li><a href="#linuxmac-登录和传输数据">Linux\Mac 登录和传输数据</a></li>
+            <li><a href="#windows-用户使用客户端">Windows 用户使用客户端</a></li>
           </ul>
         </li>
-        <li><a href="#linuxmac-登录和传输数据">Linux\Mac 登录和传输数据</a></li>
-        <li><a href="#提交作业">提交作业</a></li>
-        <li><a href="#使用软件">使用软件</a></li>
+        <li><a href="#提交作业">提交作业</a>
+          <ul>
+            <li><a href="#sbatch-提交作业">sbatch 提交作业</a></li>
+            <li><a href="#salloc-交互运行作业">salloc 交互运行作业</a></li>
+            <li><a href="#sinfo-查看资源空闲状态">sinfo 查看资源空闲状态</a></li>
+            <li><a href="#squeue-查看任务队列">squeue 查看任务队列</a></li>
+            <li><a href="#sacct-查看作业相关信息">sacct 查看作业相关信息</a></li>
+            <li><a href="#scancel-取消">scancel 取消</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用软件">使用软件</a>
+          <ul>
+            <li><a href="#通过-module-加载已有软件">通过 module 加载已有软件</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -286,11 +300,25 @@
         <li><a href="#连接集群">连接集群</a>
           <ul>
             <li><a href="#vpn-连接方式">VPN 连接方式</a></li>
+            <li><a href="#linuxmac-登录和传输数据">Linux\Mac 登录和传输数据</a></li>
+            <li><a href="#windows-用户使用客户端">Windows 用户使用客户端</a></li>
           </ul>
         </li>
-        <li><a href="#linuxmac-登录和传输数据">Linux\Mac 登录和传输数据</a></li>
-        <li><a href="#提交作业">提交作业</a></li>
-        <li><a href="#使用软件">使用软件</a></li>
+        <li><a href="#提交作业">提交作业</a>
+          <ul>
+            <li><a href="#sbatch-提交作业">sbatch 提交作业</a></li>
+            <li><a href="#salloc-交互运行作业">salloc 交互运行作业</a></li>
+            <li><a href="#sinfo-查看资源空闲状态">sinfo 查看资源空闲状态</a></li>
+            <li><a href="#squeue-查看任务队列">squeue 查看任务队列</a></li>
+            <li><a href="#sacct-查看作业相关信息">sacct 查看作业相关信息</a></li>
+            <li><a href="#scancel-取消">scancel 取消</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用软件">使用软件</a>
+          <ul>
+            <li><a href="#通过-module-加载已有软件">通过 module 加载已有软件</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -310,9 +338,9 @@
                                             
     
     <div data-prismjs-copy="" data-prismjs-copy-success="" data-prismjs-copy-error="">
-        <h2 id="快速入门">快速入门 <a href="#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>在获取上机账号后， Linux\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。
-**先登录集群，**登录前确保网络环境为内网 VPN
-Linux\Mac 用户直接使用系统自带的终端通过ssh命令登录：</p>
+        <h2 id="快速入门">快速入门 <a href="#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>在获取上机账号后， Linux\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。</p>
+<p>**先登录集群， **登录前确保网络环境为内网 VPN</p>
+<p>Linux\Mac 用户直接使用系统自带的终端通过ssh命令登录：</p>
 
 
 
@@ -332,9 +360,9 @@ Linux\Mac 用户直接使用系统自带的终端通过ssh命令登录：</p>
   <code>ssh user_name@ip_address -i /path/to/private_key</code>
   </pre>
   </div>
-<p>Window 用户可使用Xshell客户端进行登陆。<a href="https://www.netsarang.com/zh/free-for-home-school/" rel="external" target="_blank">下载Xshell<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a>，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录；
-<strong>登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。</strong>
-假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；</p>
+<p>Window 用户可使用Xshell客户端进行登陆。<a href="https://www.netsarang.com/zh/free-for-home-school/" rel="external" target="_blank">下载Xshell<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a>，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录；</p>
+<p><strong>登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。</strong></p>
+<p>假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；</p>
 
 
 
@@ -415,26 +443,32 @@ mpirun -n 2  hostname</code>
 <ol>
 <li>互联网客户端填写顺序如下：</li>
 </ol>
-<p>服务器：vpn3.nscc-gz.cn或vpn1.nscc-gz.cn
-端口号：4433
-账号：VPN账号
-密码：VPN密码</p>
+<ul>
+<li>服务器：vpn3.nscc-gz.cn或vpn1.nscc-gz.cn</li>
+<li>端口号：4433</li>
+<li>账号：VPN账号</li>
+<li>密码：VPN密码</li>
+</ul>
 <ol start="2">
 <li>超算中心办公网和专线用户客户端填写顺序如下：</li>
 </ol>
-<p>服务器：172.16.100.254
-端口号：4433
-账号：VPN账号
-密码：VPN密码</p>
+<ul>
+<li>服务器：172.16.100.254</li>
+<li>端口号：4433</li>
+<li>账号：VPN账号</li>
+<li>密码：VPN密码</li>
+</ul>
 <ol start="3">
 <li>中山大学校园网用户访问方法：</li>
 </ol>
-<p>服务器：222.200.179.12或222.200.179.9
-端口号：4433
-账号：VPN账号
-密码：VPN密码</p>
-<h2 id="linuxmac-登录和传输数据">Linux\Mac 登录和传输数据 <a href="#linuxmac-%e7%99%bb%e5%bd%95%e5%92%8c%e4%bc%a0%e8%be%93%e6%95%b0%e6%8d%ae" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>Linux\Mac用户通过自带的命令行终端，以ssh的方式登录；
-打开终端后通过以下命令连接，连接前请确保连接了 VPN</p>
+<ul>
+<li>服务器：222.200.179.12或222.200.179.9</li>
+<li>端口号：4433</li>
+<li>账号：VPN账号</li>
+<li>密码：VPN密码</li>
+</ul>
+<h3 id="linuxmac-登录和传输数据">Linux\Mac 登录和传输数据 <a href="#linuxmac-%e7%99%bb%e5%bd%95%e5%92%8c%e4%bc%a0%e8%be%93%e6%95%b0%e6%8d%ae" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>Linux\Mac用户通过自带的命令行终端，以ssh的方式登录；</p>
+<p>打开终端后通过以下命令连接，连接前请确保连接了 VPN</p>
 
 
 
@@ -482,7 +516,817 @@ rsync [-Pr] username@ip_address:~/file ./
 # 该命令将会把服务器上home目录下名为file的文件同步到本地当前文件夹下</code>
   </pre>
   </div>
-<h2 id="提交作业">提交作业 <a href="#%e6%8f%90%e4%ba%a4%e4%bd%9c%e4%b8%9a" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h2 id="使用软件">使用软件 <a href="#%e4%bd%bf%e7%94%a8%e8%bd%af%e4%bb%b6" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2>
+<h3 id="windows-用户使用客户端">Windows 用户使用客户端 <a href="#windows-%e7%94%a8%e6%88%b7%e4%bd%bf%e7%94%a8%e5%ae%a2%e6%88%b7%e7%ab%af" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>Window s用户可以使用客户端登录集群、上传数据，常见的客户端有Xshell+Xftp，<a href="https://www.netsarang.com/zh/free-for-home-school/" rel="external" target="_blank">下载Xshell+Xftp<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a>时选择免费许可版，安装后通过以下方式登录集群；
+
+
+
+
+
+
+  
+
+
+
+  
+    
+      <img src="/nest-guide/3a9e3393cf543e75b05ca818ae8be08e_8513177470785963325.png" alt="" width="681" height="708" loading="lazy">
+    
+  
+
+然后，点击用户身份验证，输入用户名，选择密钥文件，比如 <code>nsccgz_zgchen_2.id</code> 登录；</p>
+<p>下次登录集群时，点击&quot;文件&quot;&raquo;&ldquo;打开&rdquo;，找打对应的连接名称，选择连接即可。</p>
+<p>最后，登录后，在安装Xftp的前提下，打开文件传输按键，如下图所示；</p>
+<p>
+
+
+
+
+
+  
+
+
+
+  
+    
+      <img src="/nest-guide/6b8995e36911595e7fe0c973be7ab046_4680160351894778230.png" alt="" width="709" height="615" loading="lazy">
+    
+  
+</p>
+<h2 id="提交作业">提交作业 <a href="#%e6%8f%90%e4%ba%a4%e4%bd%9c%e4%b8%9a" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h3 id="sbatch-提交作业">sbatch 提交作业 <a href="#sbatch-%e6%8f%90%e4%ba%a4%e4%bd%9c%e4%b8%9a" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>将整个计算过程，写到脚本中，通过 sbatch 指令提交到计算节点上执行；</p>
+<p>先介绍一个简单的例子，随后介绍例子中涉及的参数，接着介绍 sbatch 其他一些常见参数，最后再介绍 GPU 和 MPI 跨节点作业案例。</p>
+<p><strong>首先是一个简单的例子；</strong></p>
+<p>假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="3eb9b9f" class="language-shell ">
+  <code>#!/bin/bash
+#SBATCH -o job.%j.out
+#SBATCH -p gpu_v100
+#SBATCH --qos=low
+#SBATCH -J myFirstJob
+#SBATCH --nodes=1 
+#SBATCH --ntasks-per-node=1
+
+hostname</code>
+  </pre>
+  </div>
+<p>假设上面作业脚本的文件名为job.sh，通过以下命令提交：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="ad1e548" class="language-shell ">
+  <code>sbatch job.sh</code>
+  </pre>
+  </div>
+<p><strong>随后我们介绍脚本中涉及的参数；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="2a60f10" class="language- ">
+  <code>-o job.%j.out       # 脚本执行的输出将被保存在当job.%j.out文件下，%j表示作业号;
+-p gpu_v100         # 作业提交的指定分区为 gpu_v100 ；
+-J myFirstJob       # 作业在调度系统中的作业名为myFirstJob;
+--nodes=1           # 申请节点数为1,如果作业不能跨节点(MPI)运行, 申请的节点数应不超过1;
+--ntasks-per-node=1 # 每个节点上运行一个任务，默认一情况下也可理解为每个节点使用一个核心，如果程序不支持多线程(如openmp)，这个数不应该超过1；</code>
+  </pre>
+  </div>
+<p>通过以下命令或 <code>yhi</code> 可以查看集群分区的空闲状态；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="c170770" class="language- ">
+  <code>sinfo</code>
+  </pre>
+  </div>
+<p><strong>除此之外，还有一些常见的参数；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="60d43c0" class="language- ">
+  <code>--help    # 显示帮助信息；
+-A &lt;account&gt;    # 指定账户；
+-D, --chdir=&lt;directory&gt;      # 指定工作目录；
+--get-user-env    # 获取当前的环境变量；
+--gres=&lt;list&gt;    # 使用gpu这类资源，如申请两块gpu则--gres=gpu:2
+-J, --job-name=&lt;jobname&gt;    # 指定该作业的作业名；
+--mail-type=&lt;type&gt;    # 指定状态发生时，发送邮件通知，有效种类为（NONE, BEGIN, END, FAIL, REQUEUE, ALL）；
+--mail-user=&lt;user&gt;    # 发送给指定邮箱；
+-n, --ntasks=&lt;number&gt;    # sbatch并不会执行任务，当需要申请相应的资源来运行脚本，默认情况下一个任务一个核心，--cpus-per-task参数可以修改该默认值；
+-c, --cpus-per-task=&lt;ncpus&gt;      # 每个任务所需要的核心数，默认为1；
+--ntasks-per-node=&lt;ntasks&gt;    # 每个节点的任务数，--ntasks参数的优先级高于该参数，如果使用--ntasks这个参数，那么将会变为每个节点最多运行的任务数；
+-o, --output=&lt;filename pattern&gt;    # 输出文件，作业脚本中的输出将会输出到该文件；
+-p, --partition=&lt;partition_names&gt;    # 将作业提交到对应分区；
+-q, --qos=&lt;qos&gt;    # 指定QOS；
+-t, --time=&lt;time&gt;    # 允许作业运行的最大时间
+-w, --nodelist=&lt;node name list&gt;  # 指定申请的节点；
+-x, --exclude=&lt;node name list&gt;   # 排除指定的节点；</code>
+  </pre>
+  </div>
+<p><strong>接下来是一个GPU作业的例子;</strong></p>
+<p>假设我们想要申请一块GPU卡，并通过指令nvidia-smi来查看申请到GPU卡的信息，那么可以这么编写作业脚本；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="452ee41" class="language- ">
+  <code>#!/bin/bash
+#SBATCH -o job.%j.out
+#SBATCH --partition=gpu_v100
+#SBATCH --qos=low
+#SBATCH -J myFirstGPUJob
+#SBATCH --nodes=1             
+#SBATCH --ntasks-per-node=6        
+
+nvidia-smi</code>
+  </pre>
+  </div>
+<h3 id="salloc-交互运行作业">salloc 交互运行作业 <a href="#salloc-%e4%ba%a4%e4%ba%92%e8%bf%90%e8%a1%8c%e4%bd%9c%e4%b8%9a" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>申请计算节点，然后登录到申请到的计算节点上运行指令；</p>
+<p>salloc 的参数与 sbatch 相同，该部分介绍一个简单的使用案例</p>
+<p><strong>一个简单的例子；</strong></p>
+<p>申请一个节点6个核心，并跳转到该节点上运行程序；</p>
+<p>申请一个GPU节点，6个核心，并跳转到节点上运行程序；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="2abb267" class="language- ">
+  <code>salloc -p gpu_v100 -N1 -n6 -q low -t 24:00:00
+
+# 假设申请成功后返回的作业号为2559148，申请到的节点是gpu5
+
+ssh gpu5 # 登录到 gpu05 上调式作业
+
+scancel 2559148  # 计算结束后结束任务
+squeue -j 2559148 # 确保作业已经退出，也可以yhq命令</code>
+  </pre>
+  </div>
+<h3 id="sinfo-查看资源空闲状态">sinfo 查看资源空闲状态 <a href="#sinfo-%e6%9f%a5%e7%9c%8b%e8%b5%84%e6%ba%90%e7%a9%ba%e9%97%b2%e7%8a%b6%e6%80%81" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>通过sinfo可查询各分区节点的空闲状态；</p>
+<p>首先介绍通过sinfo查看所有分区空闲状态；随后介绍通过sinfo查看指定分区的空闲状态；最后介绍sinfo的常用参数。</p>
+<p><strong>首先介绍通过sinfo查看所有分区的空闲状态；</strong></p>
+<p>显示集群的所有分区节点的空闲状态， idel 为空闲， mix 为节点部分核心可以使用， alloc 为已被占用;</p>
+<p><strong>随后介绍通过sinfo查看指定分区的空闲状态；</strong></p>
+<p>指定显示 <code>gpu_v100</code>分区的空闲状态</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="290bcd4" class="language- ">
+  <code>sinfo -p gpu_v100</code>
+  </pre>
+  </div>
+<p><strong>最后是sinfo的一些常用参数。</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="86a889e" class="language- ">
+  <code>--help    # 显示sinfo命令的使用帮助信息；
+-d        # 查看集群中没有响应的节点；
+-i &lt;seconds&gt;    # 每隔相应的秒数，对输出的分区节点信息进行刷新
+-n &lt;name_list&gt;    # 显示指定节点的信息，如果指定多个节点的话用逗号隔开；
+-N    # 按每个节点一行的格式来显示信息；
+-p  # &lt;partition&gt; 显示指定分区的信息，如果指定多个分区的话用逗号隔开；
+-r    # 只显示响应的节点；
+-R    # 显示节点不正常工作的原因；</code>
+  </pre>
+  </div>
+<p>按照指定格式输出；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="2732014" class="language- ">
+  <code>-o #&lt;output_format&gt;    显示指定的输出信息，指定的方式为%[[.]size]type，“.”表示右对齐,不加的话表示左对齐；size表示输出项的显示长度；type为需要显示的信息。可以指定显示的常见信息如下:
+%a 是否可用状态
+%A 以&#34;allocated/idle&#34;的格式来显示节点数，不要和&#34;%t&#34; or &#34;%T&#34;一起使用
+%c 节点的核心数
+%C “allocated/idle/other/total”格式显示核心总数
+%D 节点总数
+%E 节点不可用的原因
+%m 每个节点的内存大小（单位为M）
+%N 节点名
+%O CPU负载
+%P 分区名,作业默认分区带“*”
+%r 只有root可以提交作业（yes/no）
+%R 分区名
+%t 节点状态（紧凑形式）
+%T 节点的状态（扩展形式）
+例：sinfo -o &#34;%.15P %.5a %.10l %.6D %.6t %N&#34;</code>
+  </pre>
+  </div>
+<h3 id="squeue-查看任务队列">squeue 查看任务队列 <a href="#squeue-%e6%9f%a5%e7%9c%8b%e4%bb%bb%e5%8a%a1%e9%98%9f%e5%88%97" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>查看提交作业的排队情况；</p>
+<p>这里介绍了几个使用案例，首先是显示队列中所有的作业；随后介绍如何显示队列中自己的作业；接着介绍如何按照自己的格式要求显示作业信息；最后介绍squeue的常见参数。</p>
+<p><strong>首先是显示队列中所有的作业；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="d5ad3f7" class="language- ">
+  <code>squeue</code>
+  </pre>
+  </div>
+<p><strong>随后介绍如何在队列中显示自己的作业；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="3959f0c" class="language- ">
+  <code># 注意whoami前后不是单引号
+squeue -u `whoami`</code>
+  </pre>
+  </div>
+<p><strong>接着介绍如何按照自己的格式要求显示队列信息；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="d207758" class="language- ">
+  <code>squeue -o &#34;%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R&#34; -u $USER</code>
+  </pre>
+  </div>
+<p><strong>最后介绍squeue的常见参数；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="0f2afd9" class="language- ">
+  <code>--help    # 显示squeue命令的使用帮助信息；
+-A &lt;account_list&gt;    # 显示指定账户下所有用户的作业，如果是多个账户的话用逗号隔开；
+-i &lt;seconds&gt;     # 每隔相应的秒数，对输出的作业信息进行刷新
+-j &lt;job_id_list&gt; # 显示指定作业号的作业信息，如果是多个作业号的话用逗号隔开；
+-n &lt;name_list&gt;     # 显示指定节点上的作业信息，如果指定多个节点的话用逗号隔开；
+-t &lt;state_list&gt;     # 显示指定状态的作业信息，如果指定多个状态的话用逗号隔开；
+-u &lt;user_list&gt;     # 显示指定用户的作业信息，如果是多个用户的话用逗号隔开；
+-w &lt;hostlist&gt;     # 显示指定节点上运行的作业，如果是多个节点的话用逗号隔开；</code>
+  </pre>
+  </div>
+<p>按照指定输出格式输出:</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="8bb1518" class="language- ">
+  <code>-o &lt;output_format&gt;    显示指定的输出信息，指定的方式为%[[.]size]type，size表示输出项的显示长度，type为需要显示的信息。可以指定显示的常见信息如下；
+%a 账户信息
+%C 核心数
+%D 节点数
+%i 作业ID
+%j 作业名
+%l 作业时限
+%P 分区
+%q 优先级
+%R 状态PD作业显示原因，状态R的作业显示节点
+%T 状态
+%u 用户
+%M 已运行时间
+# 例:squeue -o “%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R”</code>
+  </pre>
+  </div>
+<h3 id="sacct-查看作业相关信息">sacct 查看作业相关信息 <a href="#sacct-%e6%9f%a5%e7%9c%8b%e4%bd%9c%e4%b8%9a%e7%9b%b8%e5%85%b3%e4%bf%a1%e6%81%af" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>通过sacct和scontrol show job显示作业信息；</p>
+<p>先介绍通过scontrol show job显示作业信息；随后介绍通过sacct显示作业信息；最后介绍通过saact按指定格式输出作业信息。</p>
+<p><strong>首先介绍通过scontrol show job显示作业信息；</strong></p>
+<p>scontrol show job 只能显示正在运行或者刚结束没多久的作业信息；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="f87bff1" class="language- ">
+  <code># 查看作业7454119的详细信息
+scontrol show job 7454119</code>
+  </pre>
+  </div>
+<p><strong>随后介绍通过sacct显示作业信息；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="8d995f3" class="language- ">
+  <code>sacct -j 7454119</code>
+  </pre>
+  </div>
+<p>输出内容会包括，作业号，作业名，分区，计费账户，申请的CPU数量，状态，结束代码</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="1f34691" class="language- ">
+  <code>JobID    JobName  Partition    Account  AllocCPUS      State ExitCode</code>
+  </pre>
+  </div>
+<p><strong>最后介绍如何通过sacct按照指定格式输出作业信息；</strong>
+如下所示，指定输出内容为：作业号，作业名，分区，运行节点，申请核数，状态，作业结束时间；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="1b87de1" class="language- ">
+  <code>format=jobid,jobname,partition,nodelist,alloccpus,state,end
+sacct --format=$format -j 7454119</code>
+  </pre>
+  </div>
+<h3 id="scancel-取消">scancel 取消 <a href="#scancel-%e5%8f%96%e6%b6%88" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>取消队列中已提交的作业；</p>
+<p>介绍几个使用使用案例，分别是，取消指定作业、取消自己上机账号上所有作业、取消自己上机账号上所有状态为PENDING的作业，最后介绍scancel常见的参数。</p>
+<p><strong>取消指定作业；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="fef2a5e" class="language- ">
+  <code># 取消作业ID为123的作业
+scancel 123</code>
+  </pre>
+  </div>
+<p><strong>取消自己上机上号上所有作业；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="f662181" class="language- ">
+  <code># 注意whoami前后不是单引号
+scancel -u `whoami`</code>
+  </pre>
+  </div>
+<p><strong>取消自己上机账号上所有状态为PENDING的作业；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="05f75dd" class="language- ">
+  <code>scancel -t PENDING -u `whoami`</code>
+  </pre>
+  </div>
+<p><strong>scancel常见参数;</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="f2ec7db" class="language- ">
+  <code>--help                # 显示scancel命令的使用帮助信息；
+-A &lt;account&gt;        # 取消指定账户的作业，如果没有指定job_id,将取消所有；
+-n &lt;job_name&gt;        # 取消指定作业名的作业；
+-p &lt;partition_name&gt; # 取消指定分区的作业；
+-q &lt;qos&gt;            # 取消指定qos的作业；
+-t &lt;job_state_name&gt; # 取消指定作态的作业，&#34;PENDING&#34;, &#34;RUNNING&#34; 或 &#34;SUSPENDED&#34;；
+-u &lt;user_name&gt;        # 取消指定用户下的作业；</code>
+  </pre>
+  </div>
+<h2 id="使用软件">使用软件 <a href="#%e4%bd%bf%e7%94%a8%e8%bd%af%e4%bb%b6" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><h3 id="通过-module-加载已有软件">通过 module 加载已有软件 <a href="#%e9%80%9a%e8%bf%87-module-%e5%8a%a0%e8%bd%bd%e5%b7%b2%e6%9c%89%e8%bd%af%e4%bb%b6" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h3><p>软件安装到自定义的目录后，并不能直接使用，需要将软件的可执行文件路径等添加到对应的环境变量后才能使用。module则是一款环境变量管理工具，通过module实现软件环境变量的管理，快速加载和切换软件环境。集群安装了常用的一些软件和库，可通过module进行加载使用。</p>
+<p>首先介绍module常见的一些指令；接着介绍几个module的几个使用案例；最后介绍如何编写modulefile来管理自己的软件环境。</p>
+<p><strong>首先介绍module常见的一些指令；</strong></p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="6c4ebb9" class="language-shell ">
+  <code>module help       # 显示帮助信息
+module avail      # 显示已经安装的软件环境
+module load       # 导入相应的软件环境
+module unload     # 删除相应的软件环境
+module list       # 列出已经导入的软件环境
+module purge      # 清除所有已经导入的软件环境
+module switch [mod1] mod2 # 删除mod1并导入mod2</code>
+  </pre>
+  </div>
+<p><strong>接着介绍几个module的使用例子；</strong></p>
+<p>查看集群现有软件活库；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="8d3a040" class="language- ">
+  <code>module avail</code>
+  </pre>
+  </div>
+<p>查看集群可用的matlab版本；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="9435622" class="language- ">
+  <code>module avail matlab</code>
+  </pre>
+  </div>
+<p>导入matlab/R2017a软件环境；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="31eb858" class="language- ">
+  <code>module load matlab/R2017a</code>
+  </pre>
+  </div>
+<p>清除所有通过module导入的软件环境；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="f67f1cf" class="language- ">
+  <code>module purge</code>
+  </pre>
+  </div>
+<p><strong>最后介绍如何编写modulefile来管理自己的软件环境。</strong></p>
+<p>自己编译安装的软件也可以通过module来进行管理，步骤为：先创建目录用来存放自己的modulefile；然后在创建好的目录下编写modulefile；</p>
+<p>首先，创建目录用来存放自己的modulefile；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="e7b24d1" class="language- ">
+  <code>mkdir ${HOME}/mymodulefiles   # 创建目录用于放自己的module file
+echo &#34;export MODULEPATH=${HOME}/mymodulefiles:\$MODULEPATH&#34; &gt;&gt; ~/.bashrc
+source ~/.bashrc # 或者退出重新登录即可
+# 编写自己的第一个module file
+cd ${HOME}/mymodulefiles
+vim myfirstmodulefile</code>
+  </pre>
+  </div>
+<p>然后在创建好的目录下编写modulefile，假设在/share/home/test/soft/gcc/7.2.0安装了gcc编译器，则可以这么编写modulefile；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="d399f28" class="language- ">
+  <code>#%Module1.0
+##
+##
+module-whatis &#34;my first modulefile&#34;
+
+set topdir &#34;/share/home/test/soft/gcc/7.2.0&#34;
+prepend-path PATH &#34;${topdir}/bin&#34;
+prepend-path LIBRARY_PATH &#34;${topdir}/lib&#34;
+prepend-path LD_LIBRARY_PATH &#34;${topdir}/lib&#34;
+prepend-path LIBRARY_PATH &#34;${topdir}/lib64&#34;
+prepend-path LD_LIBRARY_PATH &#34;${topdir}/lib64&#34;
+prepend-path CPATH &#34;${topdir}/include&#34;
+prepend-path CMAKE_PREFIX_PATH &#34;${topdir}&#34;
+setenv CC &#34;${topdir}/bin/gcc&#34;
+setenv CXX &#34;${topdir}/bin/g&#43;&#43;&#34;
+setenv FC &#34;${topdir}/bin/gfortran&#34;
+setenv F77 &#34;${topdir}/bin/gfortran&#34;
+setenv F90 &#34;${topdir}/bin/gfortran&#34;</code>
+  </pre>
+  </div>
+<p>编写好后执行module avail即可查看到刚刚写好的modulefile了
+下为编写modulefile文件常见的语法；</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="e6d30fe" class="language- ">
+  <code>set           # 设置modulefile内部的变量
+setenv        # 设置环境变量
+prepend-path  # 效果类似于export PATH=xxx:$PATH
+append-path   # 效果类似export PATH=$PATH:xxx</code>
+  </pre>
+  </div>
+
     </div>
 
     
@@ -519,9 +1363,9 @@ rsync [-Pr] username@ip_address:~/file ./
     <div id="last-modified" class="mt-1">
         <p class="mb-0 fw-semibold">Last updated <span
             id="relativetime"
-            data-authdate="2023-09-19T13:24:27Z"
-            title="19 Sep 2023, 13:24 UTC">
-            19 Sep 2023, 13:24 UTC
+            data-authdate="2023-09-19T15:10:56Z"
+            title="19 Sep 2023, 15:10 UTC">
+            19 Sep 2023, 15:10 UTC
         </span>. <span class="material-icons size-20 align-text-bottom opacity-75">history</span>
         </p>
     </div>
@@ -759,8 +1603,8 @@ rsync [-Pr] username@ip_address:~/file ./
                 id:  2 ,
                 href: "\/nest-guide\/docs\/cg68ylfgx0u7dmfg\/",
                 title: "th2k 超算使用教程",
-                description: "快速入门 link在获取上机账号后， Linux\\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。 **先登录集群，**登录前确保网络环境为内网 VPN Linux\\Mac 用户直接使用系统自带的终端通过ssh命令登录：\nssh user_name@ip_address -i /path/to/private_key Window 用户可使用Xshell客户端进行登陆。下载Xshell，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录； 登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。 假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=gpu_v100 #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=1 hostname 假设上面作业脚本的文件名为job.sh，通过以下命令提交：\nsbatch job.sh 集群安装了常见的计算软件，可以通过module指令导入计算环境； 可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了intel_parallel_studio/2017.1的软件环境，具体可用的软件环境可使用命令 module avail 指令进行查看。\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=C032M0128G #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=2 module purge module load intel_parallel_studio/2017.1 mpirun -n 2 hostname 连接集群 linkVPN 连接方式 link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端，并使用 VPN 用户名与密码即可登录 VPN。",
-                content: "快速入门 link在获取上机账号后， Linux\\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。 **先登录集群，**登录前确保网络环境为内网 VPN Linux\\Mac 用户直接使用系统自带的终端通过ssh命令登录：\nssh user_name@ip_address -i /path/to/private_key Window 用户可使用Xshell客户端进行登陆。下载Xshell，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录； 登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。 假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=gpu_v100 #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=1 hostname 假设上面作业脚本的文件名为job.sh，通过以下命令提交：\nsbatch job.sh 集群安装了常见的计算软件，可以通过module指令导入计算环境； 可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了intel_parallel_studio/2017.1的软件环境，具体可用的软件环境可使用命令 module avail 指令进行查看。\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=C032M0128G #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=2 module purge module load intel_parallel_studio/2017.1 mpirun -n 2 hostname 连接集群 linkVPN 连接方式 link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端，并使用 VPN 用户名与密码即可登录 VPN。\n互联网客户端填写顺序如下： 服务器：vpn3.nscc-gz.cn或vpn1.nscc-gz.cn 端口号：4433 账号：VPN账号 密码：VPN密码\n超算中心办公网和专线用户客户端填写顺序如下： 服务器：172.16.100.254 端口号：4433 账号：VPN账号 密码：VPN密码\n中山大学校园网用户访问方法： 服务器：222.200.179.12或222.200.179.9 端口号：4433 账号：VPN账号 密码：VPN密码\nLinux\\Mac 登录和传输数据 linkLinux\\Mac用户通过自带的命令行终端，以ssh的方式登录； 打开终端后通过以下命令连接，连接前请确保连接了 VPN\n# user_name为上机账号，ip_address为所要连接集群的IP ssh user_name@ip_address -i /path/to/private_key 通过 scp 或者 rsync 传输数据（需要带上 -i 选项）\nscp [-r] file username@ip_address:~/ # 该命令将会把本地的名为file的文件上传到集群的home目录下,如果file是一个目录的话还需要加上参数r scp [-r] username@ip_address:~/file ./ # 该命令将会把服务器上home目录下名为file的文件下载到本地当前文件夹下 rsync [-Pr] file username@ip_address:~/ # 该命令将会把本地的名为file的文件同步到集群的home目录下,如果file是一个目录的话还需要加上参数r rsync [-Pr] username@ip_address:~/file ./ # 该命令将会把服务器上home目录下名为file的文件同步到本地当前文件夹下 提交作业 link使用软件 link"
+                description: "快速入门 link在获取上机账号后， Linux\\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。\n**先登录集群， **登录前确保网络环境为内网 VPN\nLinux\\Mac 用户直接使用系统自带的终端通过ssh命令登录：\nssh user_name@ip_address -i /path/to/private_key Window 用户可使用Xshell客户端进行登陆。下载Xshell，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录；\n登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。\n假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=gpu_v100 #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=1 hostname 假设上面作业脚本的文件名为job.sh，通过以下命令提交：\nsbatch job.sh 集群安装了常见的计算软件，可以通过module指令导入计算环境； 可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了intel_parallel_studio/2017.1的软件环境，具体可用的软件环境可使用命令 module avail 指令进行查看。\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=C032M0128G #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=2 module purge module load intel_parallel_studio/2017.1 mpirun -n 2 hostname 连接集群 linkVPN 连接方式 link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端，并使用 VPN 用户名与密码即可登录 VPN。",
+                content: "快速入门 link在获取上机账号后， Linux\\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。\n**先登录集群， **登录前确保网络环境为内网 VPN\nLinux\\Mac 用户直接使用系统自带的终端通过ssh命令登录：\nssh user_name@ip_address -i /path/to/private_key Window 用户可使用Xshell客户端进行登陆。下载Xshell，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录；\n登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。\n假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=gpu_v100 #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=1 hostname 假设上面作业脚本的文件名为job.sh，通过以下命令提交：\nsbatch job.sh 集群安装了常见的计算软件，可以通过module指令导入计算环境； 可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了intel_parallel_studio/2017.1的软件环境，具体可用的软件环境可使用命令 module avail 指令进行查看。\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=C032M0128G #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=2 module purge module load intel_parallel_studio/2017.1 mpirun -n 2 hostname 连接集群 linkVPN 连接方式 link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端，并使用 VPN 用户名与密码即可登录 VPN。\n互联网客户端填写顺序如下： 服务器：vpn3.nscc-gz.cn或vpn1.nscc-gz.cn 端口号：4433 账号：VPN账号 密码：VPN密码 超算中心办公网和专线用户客户端填写顺序如下： 服务器：172.16.100.254 端口号：4433 账号：VPN账号 密码：VPN密码 中山大学校园网用户访问方法： 服务器：222.200.179.12或222.200.179.9 端口号：4433 账号：VPN账号 密码：VPN密码 Linux\\Mac 登录和传输数据 linkLinux\\Mac用户通过自带的命令行终端，以ssh的方式登录；\n打开终端后通过以下命令连接，连接前请确保连接了 VPN\n# user_name为上机账号，ip_address为所要连接集群的IP ssh user_name@ip_address -i /path/to/private_key 通过 scp 或者 rsync 传输数据（需要带上 -i 选项）\nscp [-r] file username@ip_address:~/ # 该命令将会把本地的名为file的文件上传到集群的home目录下,如果file是一个目录的话还需要加上参数r scp [-r] username@ip_address:~/file ./ # 该命令将会把服务器上home目录下名为file的文件下载到本地当前文件夹下 rsync [-Pr] file username@ip_address:~/ # 该命令将会把本地的名为file的文件同步到集群的home目录下,如果file是一个目录的话还需要加上参数r rsync [-Pr] username@ip_address:~/file ./ # 该命令将会把服务器上home目录下名为file的文件同步到本地当前文件夹下 Windows 用户使用客户端 linkWindow s用户可以使用客户端登录集群、上传数据，常见的客户端有Xshell+Xftp，下载Xshell+Xftp时选择免费许可版，安装后通过以下方式登录集群； 然后，点击用户身份验证，输入用户名，选择密钥文件，比如 nsccgz_zgchen_2.id 登录；\n下次登录集群时，点击\"文件\"»“打开”，找打对应的连接名称，选择连接即可。\n最后，登录后，在安装Xftp的前提下，打开文件传输按键，如下图所示；\n提交作业 linksbatch 提交作业 link将整个计算过程，写到脚本中，通过 sbatch 指令提交到计算节点上执行；\n先介绍一个简单的例子，随后介绍例子中涉及的参数，接着介绍 sbatch 其他一些常见参数，最后再介绍 GPU 和 MPI 跨节点作业案例。\n首先是一个简单的例子；\n假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH -p gpu_v100 #SBATCH --qos=low #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=1 hostname 假设上面作业脚本的文件名为job.sh，通过以下命令提交：\nsbatch job.sh 随后我们介绍脚本中涉及的参数；\n-o job.%j.out # 脚本执行的输出将被保存在当job.%j.out文件下，%j表示作业号; -p gpu_v100 # 作业提交的指定分区为 gpu_v100 ； -J myFirstJob # 作业在调度系统中的作业名为myFirstJob; --nodes=1 # 申请节点数为1,如果作业不能跨节点(MPI)运行, 申请的节点数应不超过1; --ntasks-per-node=1 # 每个节点上运行一个任务，默认一情况下也可理解为每个节点使用一个核心，如果程序不支持多线程(如openmp)，这个数不应该超过1； 通过以下命令或 yhi 可以查看集群分区的空闲状态；\nsinfo 除此之外，还有一些常见的参数；\n--help # 显示帮助信息； -A # 指定账户； -D, --chdir= # 指定工作目录； --get-user-env # 获取当前的环境变量； --gres= # 使用gpu这类资源，如申请两块gpu则--gres=gpu:2 -J, --job-name= # 指定该作业的作业名； --mail-type= # 指定状态发生时，发送邮件通知，有效种类为（NONE, BEGIN, END, FAIL, REQUEUE, ALL）； --mail-user= # 发送给指定邮箱； -n, --ntasks= # sbatch并不会执行任务，当需要申请相应的资源来运行脚本，默认情况下一个任务一个核心，--cpus-per-task参数可以修改该默认值； -c, --cpus-per-task= # 每个任务所需要的核心数，默认为1； --ntasks-per-node= # 每个节点的任务数，--ntasks参数的优先级高于该参数，如果使用--ntasks这个参数，那么将会变为每个节点最多运行的任务数； -o, --output= # 输出文件，作业脚本中的输出将会输出到该文件； -p, --partition= # 将作业提交到对应分区； -q, --qos= # 指定QOS； -t, --time= # 允许作业运行的最大时间 -w, --nodelist= # 指定申请的节点； -x, --exclude= # 排除指定的节点； 接下来是一个GPU作业的例子;\n假设我们想要申请一块GPU卡，并通过指令nvidia-smi来查看申请到GPU卡的信息，那么可以这么编写作业脚本；\n#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=gpu_v100 #SBATCH --qos=low #SBATCH -J myFirstGPUJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=6 nvidia-smi salloc 交互运行作业 link申请计算节点，然后登录到申请到的计算节点上运行指令；\nsalloc 的参数与 sbatch 相同，该部分介绍一个简单的使用案例\n一个简单的例子；\n申请一个节点6个核心，并跳转到该节点上运行程序；\n申请一个GPU节点，6个核心，并跳转到节点上运行程序；\nsalloc -p gpu_v100 -N1 -n6 -q low -t 24:00:00 # 假设申请成功后返回的作业号为2559148，申请到的节点是gpu5 ssh gpu5 # 登录到 gpu05 上调式作业 scancel 2559148 # 计算结束后结束任务 squeue -j 2559148 # 确保作业已经退出，也可以yhq命令 sinfo 查看资源空闲状态 link通过sinfo可查询各分区节点的空闲状态；\n首先介绍通过sinfo查看所有分区空闲状态；随后介绍通过sinfo查看指定分区的空闲状态；最后介绍sinfo的常用参数。\n首先介绍通过sinfo查看所有分区的空闲状态；\n显示集群的所有分区节点的空闲状态， idel 为空闲， mix 为节点部分核心可以使用， alloc 为已被占用;\n随后介绍通过sinfo查看指定分区的空闲状态；\n指定显示 gpu_v100分区的空闲状态\nsinfo -p gpu_v100 最后是sinfo的一些常用参数。\n--help # 显示sinfo命令的使用帮助信息； -d # 查看集群中没有响应的节点； -i # 每隔相应的秒数，对输出的分区节点信息进行刷新 -n # 显示指定节点的信息，如果指定多个节点的话用逗号隔开； -N # 按每个节点一行的格式来显示信息； -p # 显示指定分区的信息，如果指定多个分区的话用逗号隔开； -r # 只显示响应的节点； -R # 显示节点不正常工作的原因； 按照指定格式输出；\n-o # 显示指定的输出信息，指定的方式为%[[.]size]type，“.”表示右对齐,不加的话表示左对齐；size表示输出项的显示长度；type为需要显示的信息。可以指定显示的常见信息如下: %a 是否可用状态 %A 以\"allocated/idle\"的格式来显示节点数，不要和\"%t\" or \"%T\"一起使用 %c 节点的核心数 %C “allocated/idle/other/total”格式显示核心总数 %D 节点总数 %E 节点不可用的原因 %m 每个节点的内存大小（单位为M） %N 节点名 %O CPU负载 %P 分区名,作业默认分区带“*” %r 只有root可以提交作业（yes/no） %R 分区名 %t 节点状态（紧凑形式） %T 节点的状态（扩展形式） 例：sinfo -o \"%.15P %.5a %.10l %.6D %.6t %N\" squeue 查看任务队列 link查看提交作业的排队情况；\n这里介绍了几个使用案例，首先是显示队列中所有的作业；随后介绍如何显示队列中自己的作业；接着介绍如何按照自己的格式要求显示作业信息；最后介绍squeue的常见参数。\n首先是显示队列中所有的作业；\nsqueue 随后介绍如何在队列中显示自己的作业；\n# 注意whoami前后不是单引号 squeue -u `whoami` 接着介绍如何按照自己的格式要求显示队列信息；\nsqueue -o \"%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R\" -u $USER 最后介绍squeue的常见参数；\n--help # 显示squeue命令的使用帮助信息； -A # 显示指定账户下所有用户的作业，如果是多个账户的话用逗号隔开； -i # 每隔相应的秒数，对输出的作业信息进行刷新 -j # 显示指定作业号的作业信息，如果是多个作业号的话用逗号隔开； -n # 显示指定节点上的作业信息，如果指定多个节点的话用逗号隔开； -t # 显示指定状态的作业信息，如果指定多个状态的话用逗号隔开； -u # 显示指定用户的作业信息，如果是多个用户的话用逗号隔开； -w # 显示指定节点上运行的作业，如果是多个节点的话用逗号隔开； 按照指定输出格式输出:\n-o 显示指定的输出信息，指定的方式为%[[.]size]type，size表示输出项的显示长度，type为需要显示的信息。可以指定显示的常见信息如下； %a 账户信息 %C 核心数 %D 节点数 %i 作业ID %j 作业名 %l 作业时限 %P 分区 %q 优先级 %R 状态PD作业显示原因，状态R的作业显示节点 %T 状态 %u 用户 %M 已运行时间 # 例:squeue -o “%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R” sacct 查看作业相关信息 link通过sacct和scontrol show job显示作业信息；\n先介绍通过scontrol show job显示作业信息；随后介绍通过sacct显示作业信息；最后介绍通过saact按指定格式输出作业信息。\n首先介绍通过scontrol show job显示作业信息；\nscontrol show job 只能显示正在运行或者刚结束没多久的作业信息；\n# 查看作业7454119的详细信息 scontrol show job 7454119 随后介绍通过sacct显示作业信息；\nsacct -j 7454119 输出内容会包括，作业号，作业名，分区，计费账户，申请的CPU数量，状态，结束代码\nJobID JobName Partition Account AllocCPUS State ExitCode 最后介绍如何通过sacct按照指定格式输出作业信息； 如下所示，指定输出内容为：作业号，作业名，分区，运行节点，申请核数，状态，作业结束时间；\nformat=jobid,jobname,partition,nodelist,alloccpus,state,end sacct --format=$format -j 7454119 scancel 取消 link取消队列中已提交的作业；\n介绍几个使用使用案例，分别是，取消指定作业、取消自己上机账号上所有作业、取消自己上机账号上所有状态为PENDING的作业，最后介绍scancel常见的参数。\n取消指定作业；\n# 取消作业ID为123的作业 scancel 123 取消自己上机上号上所有作业；\n# 注意whoami前后不是单引号 scancel -u `whoami` 取消自己上机账号上所有状态为PENDING的作业；\nscancel -t PENDING -u `whoami` scancel常见参数;\n--help # 显示scancel命令的使用帮助信息； -A # 取消指定账户的作业，如果没有指定job_id,将取消所有； -n # 取消指定作业名的作业； -p # 取消指定分区的作业； -q # 取消指定qos的作业； -t # 取消指定作态的作业，\"PENDING\", \"RUNNING\" 或 \"SUSPENDED\"； -u # 取消指定用户下的作业； 使用软件 link通过 module 加载已有软件 link软件安装到自定义的目录后，并不能直接使用，需要将软件的可执行文件路径等添加到对应的环境变量后才能使用。module则是一款环境变量管理工具，通过module实现软件环境变量的管理，快速加载和切换软件环境。集群安装了常用的一些软件和库，可通过module进行加载使用。\n首先介绍module常见的一些指令；接着介绍几个module的几个使用案例；最后介绍如何编写modulefile来管理自己的软件环境。\n首先介绍module常见的一些指令；\nmodule help # 显示帮助信息 module avail # 显示已经安装的软件环境 module load # 导入相应的软件环境 module unload # 删除相应的软件环境 module list # 列出已经导入的软件环境 module purge # 清除所有已经导入的软件环境 module switch [mod1] mod2 # 删除mod1并导入mod2 接着介绍几个module的使用例子；\n查看集群现有软件活库；\nmodule avail 查看集群可用的matlab版本；\nmodule avail matlab 导入matlab/R2017a软件环境；\nmodule load matlab/R2017a 清除所有通过module导入的软件环境；\nmodule purge 最后介绍如何编写modulefile来管理自己的软件环境。\n自己编译安装的软件也可以通过module来进行管理，步骤为：先创建目录用来存放自己的modulefile；然后在创建好的目录下编写modulefile；\n首先，创建目录用来存放自己的modulefile；\nmkdir ${HOME}/mymodulefiles # 创建目录用于放自己的module file echo \"export MODULEPATH=${HOME}/mymodulefiles:\\$MODULEPATH\" \u003e\u003e ~/.bashrc source ~/.bashrc # 或者退出重新登录即可 # 编写自己的第一个module file cd ${HOME}/mymodulefiles vim myfirstmodulefile 然后在创建好的目录下编写modulefile，假设在/share/home/test/soft/gcc/7.2.0安装了gcc编译器，则可以这么编写modulefile；\n#%Module1.0 ## ## module-whatis \"my first modulefile\" set topdir \"/share/home/test/soft/gcc/7.2.0\" prepend-path PATH \"${topdir}/bin\" prepend-path LIBRARY_PATH \"${topdir}/lib\" prepend-path LD_LIBRARY_PATH \"${topdir}/lib\" prepend-path LIBRARY_PATH \"${topdir}/lib64\" prepend-path LD_LIBRARY_PATH \"${topdir}/lib64\" prepend-path CPATH \"${topdir}/include\" prepend-path CMAKE_PREFIX_PATH \"${topdir}\" setenv CC \"${topdir}/bin/gcc\" setenv CXX \"${topdir}/bin/g++\" setenv FC \"${topdir}/bin/gfortran\" setenv F77 \"${topdir}/bin/gfortran\" setenv F90 \"${topdir}/bin/gfortran\" 编写好后执行module avail即可查看到刚刚写好的modulefile了 下为编写modulefile文件常见的语法；\nset # 设置modulefile内部的变量 setenv # 设置环境变量 prepend-path # 效果类似于export PATH=xxx:$PATH append-path # 效果类似export PATH=$PATH:xxx "
             }
         );
     search.addEventListener('input', show_results, true);
