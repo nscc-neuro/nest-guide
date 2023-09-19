@@ -85,10 +85,10 @@
                     
                         
                         <li class="">
-                            <a class="sidebar-root-link" href="https://nscc-neuro.github.io/nest-guide/docs/nest-guide/">
-                                <i class="material-icons me-2">rocket_launch</i>
+                            <a class="sidebar-root-link" href="https://nscc-neuro.github.io/nest-guide/docs/oztm79xgq93290rc/">
+                                <i class="material-icons me-2">menu_book</i>
                                 
-                                NEST 集群部署文档
+                                NEST集群版部署记录
                             </a>
                         </li>
                     
@@ -260,15 +260,15 @@
     <div class="row flex-xl-wrap">
         
         <div id="list-item" class="col-md-4 col-12 mt-4 pt-2">
-            <a class="text-decoration-none text-reset" href="https://nscc-neuro.github.io/nest-guide/docs/nest-guide/">
+            <a class="text-decoration-none text-reset" href="https://nscc-neuro.github.io/nest-guide/docs/oztm79xgq93290rc/">
                 <div class="card h-100 features feature-full-bg rounded p-4 position-relative overflow-hidden border-1">
                     <span class="icon-color d-flex my-3">
-                        <i class="material-icons align-middle">rocket_launch</i>
+                        <i class="material-icons align-middle">menu_book</i>
                         
                         
                     </span>
                     <div class="card-body p-0 content">
-                        <p class="fs-5 fw-semibold card-title mb-1">NEST 集群部署文档</p>
+                        <p class="fs-5 fw-semibold card-title mb-1">NEST集群版部署记录</p>
                         <p class="para card-text mb-0"></p>
                     </div>
                     
@@ -474,10 +474,10 @@
     index.add(
             {
                 id:  1 ,
-                href: "\/nest-guide\/docs\/nest-guide\/",
-                title: "NEST 集群部署文档",
-                description: "1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。\n输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。\n图片暂时略\n2. 登录集群 link此部分缺少具体步骤，请补充。\n3. 设置外网代理 link在环境变量中配置：\nexport http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=\"localhost,127.0.0.1\" 在命令行配置：\ngit config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 4. 安装 Miniconda3 link从 Miniconda3 官方网站 下载 Miniconda3。\n执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。\n5. 安装 Boost link从 Boost 官方网站 下载 Boost。\n解压 boost_1_77_0.tar.gz 文件。\n在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：",
-                content: "1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。\n输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。\n图片暂时略\n2. 登录集群 link此部分缺少具体步骤，请补充。\n3. 设置外网代理 link在环境变量中配置：\nexport http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=\"localhost,127.0.0.1\" 在命令行配置：\ngit config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 4. 安装 Miniconda3 link从 Miniconda3 官方网站 下载 Miniconda3。\n执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。\n5. 安装 Boost link从 Boost 官方网站 下载 Boost。\n解压 boost_1_77_0.tar.gz 文件。\n在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：\n./bootstrap.sh --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3' 6. 安装 GNU Scientific Library link从 GNU Scientific Library 镜像站 下载 GSL。\n解压 gsl-latest.tar.gz。\n在 GSL 根目录执行以下命令安装 GSL（需要将路径换成自己的安装路径）：\n./configure --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-8.4.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3' 7. 安装 NEST link从 NEST github仓库 下载 NEST 3.4。\n解压 v3.4.tar.gz。\n使用 pip 安装 numpy, scipy, cython:\npip3 install numpy scipy cython 在 nest-simulator-3.4 目录下执行（需要将路径换成自己的路径）：\ncmake -DCMAKE_C_COMPILER=mpicc \\ -DCMAKE_CXX_COMPILER=mpicxx \\ -Dwith-mpi=/GPUFS/sysu_hpcscc_1/lvtx/tools/mvapich2/2.3.7-gcc-12.2.0/bin/mpiexec \\ -DCMAKE_C_FLAGS='-O3 -fPIC' \\ -DCMAKE_CXX_FLAGS='-O3' \\ -Dwith-boost=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0/ \\ -DGSL_INCLUDE_DIR=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/include \\ -DGSL_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgsl.a \\ -DGSL_CBLAS_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgslcblas.a \\ -DCMAKE_INSTALL_PREFIX:PATH=/GPUFS/sysu_hpcscc_1/lvtx/tools/nest-simulator/3.0-gcc-12.2.0 . 8. 运行 hpc_benchmark link"
+                href: "\/nest-guide\/docs\/oztm79xgq93290rc\/",
+                title: "NEST集群版部署记录",
+                description: "1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。\n输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。\n（图片暂时略）\n2. 登录集群 link此部分缺少具体步骤，请补充。\n3. 设置外网代理 link在环境变量中配置：\nexport http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=\"localhost,127.0.0.1\" 在命令行配置：\ngit config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 4. 安装 Miniconda3 link从 Miniconda3 官方网站 下载 Miniconda3。\n执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。\n5. 安装 Boost link从 Boost 官方网站 下载 Boost。\n解压 boost_1_77_0.tar.gz 文件。\n在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：",
+                content: "1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。\n输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。\n（图片暂时略）\n2. 登录集群 link此部分缺少具体步骤，请补充。\n3. 设置外网代理 link在环境变量中配置：\nexport http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=\"localhost,127.0.0.1\" 在命令行配置：\ngit config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 4. 安装 Miniconda3 link从 Miniconda3 官方网站 下载 Miniconda3。\n执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。\n5. 安装 Boost link从 Boost 官方网站 下载 Boost。\n解压 boost_1_77_0.tar.gz 文件。\n在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：\n./bootstrap.sh --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3' 6. 安装 GNU Scientific Library link从 GNU Scientific Library 镜像站 下载 GSL。\n解压 gsl-latest.tar.gz。\n在 GSL 根目录执行以下命令安装 GSL（需要将路径换成自己的安装路径）：\n./configure --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-8.4.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3' 7. 安装 NEST link从 NEST github仓库 下载 NEST 3.4。\n解压 v3.4.tar.gz。\n使用 pip 安装 numpy, scipy, cython:\npip3 install numpy scipy cython 在 nest-simulator-3.4 目录下执行（需要将路径换成自己的路径）：\ncmake -DCMAKE_C_COMPILER=mpicc \\ -DCMAKE_CXX_COMPILER=mpicxx \\ -Dwith-mpi=/GPUFS/sysu_hpcscc_1/lvtx/tools/mvapich2/2.3.7-gcc-12.2.0/bin/mpiexec \\ -DCMAKE_C_FLAGS='-O3 -fPIC' \\ -DCMAKE_CXX_FLAGS='-O3' \\ -Dwith-boost=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0/ \\ -DGSL_INCLUDE_DIR=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/include \\ -DGSL_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgsl.a \\ -DGSL_CBLAS_LIBRARY=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-12.2.0/lib/libgslcblas.a \\ -DCMAKE_INSTALL_PREFIX:PATH=/GPUFS/sysu_hpcscc_1/lvtx/tools/nest-simulator/3.0-gcc-12.2.0 . 8. 运行 hpc_benchmark link"
             }
         );
     search.addEventListener('input', show_results, true);

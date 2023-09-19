@@ -8,14 +8,14 @@
     <language>zh-cn</language>
     <lastBuildDate>Mon, 10 Oct 2022 02:21:15 +0000</lastBuildDate><atom:link href="https://nscc-neuro.github.io/nest-guide/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>NEST 集群部署文档</title>
-      <link>https://nscc-neuro.github.io/nest-guide/docs/nest-guide/</link>
-      <pubDate>Sun, 17 Sep 2023 00:00:00 +0000</pubDate>
+      <title>NEST集群版部署记录</title>
+      <link>https://nscc-neuro.github.io/nest-guide/docs/oztm79xgq93290rc/</link>
+      <pubDate>Tue, 19 Sep 2023 07:47:45 +0000</pubDate>
       
-      <guid>https://nscc-neuro.github.io/nest-guide/docs/nest-guide/</guid>
+      <guid>https://nscc-neuro.github.io/nest-guide/docs/oztm79xgq93290rc/</guid>
       <description>1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。
 输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。
-图片暂时略
+（图片暂时略）
 2. 登录集群 link此部分缺少具体步骤，请补充。
 3. 设置外网代理 link在环境变量中配置：
 export http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=&amp;#34;localhost,127.0.0.1&amp;#34; 在命令行配置：
