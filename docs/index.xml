@@ -8,7 +8,7 @@
     <language>zh-cn</language>
     <lastBuildDate>Mon, 10 Oct 2022 02:21:15 +0000</lastBuildDate><atom:link href="https://nscc-neuro.github.io/nest-guide/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>NEST集群版部署记录</title>
+      <title>NEST 集群版部署记录</title>
       <link>https://nscc-neuro.github.io/nest-guide/docs/oztm79xgq93290rc/</link>
       <pubDate>Tue, 19 Sep 2023 07:47:45 +0000</pubDate>
       
@@ -16,14 +16,26 @@
       <description>1. 设置内网 VPN link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端。
 输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。
 （图片暂时略）
-2. 登录集群 link此部分缺少具体步骤，请补充。
+2. 登录集群 link此部分缺少具体步骤，请补充。 Mac用户首先将秘钥文件放到.ssh文件夹内，并在.ssh文件夹内的config文件中添加如下信息：
+Host SelfDefineName HostName 172.16.20.102 IdentityFile Path/to/Private_key User Username 在登录内网VPN的前提下，可在终端输入命令ssh SelfDefineName测试集群连接是否成功，或直接使用vscode连接集群。注意：连接集群必须使用VPN。
 3. 设置外网代理 link在环境变量中配置：
 export http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 export no_proxy=&amp;#34;localhost,127.0.0.1&amp;#34; 在命令行配置：
 git config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 4. 安装 Miniconda3 link从 Miniconda3 官方网站 下载 Miniconda3。
 执行 Miniconda3-py39_23.5.2-0-Linux-x86_64.sh，按照提示安装 Miniconda3。
-5. 安装 Boost link从 Boost 官方网站 下载 Boost。
-解压 boost_1_77_0.tar.gz 文件。
-在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：</description>
+5. 安装 Boost link从 Boost 官方网站 下载 Boost。</description>
+    </item>
+    
+    <item>
+      <title>th2k 超算使用教程</title>
+      <link>https://nscc-neuro.github.io/nest-guide/docs/cg68ylfgx0u7dmfg/</link>
+      <pubDate>Tue, 19 Sep 2023 10:21:04 +0000</pubDate>
+      
+      <guid>https://nscc-neuro.github.io/nest-guide/docs/cg68ylfgx0u7dmfg/</guid>
+      <description>快速入门 link在获取上机账号后， Linux\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。 **先登录集群，**登录前确保网络环境为内网 VPN Linux\Mac 用户直接使用系统自带的终端通过ssh命令登录：
+ssh user_name@ip_address -i /path/to/private_key Window 用户可使用Xshell客户端进行登陆。下载Xshell，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录； 登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。 假设我们的计算过程为：在计算节点上运行 hostname 指令，那么就可以这么编写作业脚本；
+#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=gpu_v100 #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=1 hostname 假设上面作业脚本的文件名为job.sh，通过以下命令提交：
+sbatch job.sh 集群安装了常见的计算软件，可以通过module指令导入计算环境； 可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了intel_parallel_studio/2017.1的软件环境，具体可用的软件环境可使用命令 module avail 指令进行查看。
+#!/bin/bash #SBATCH -o job.%j.out #SBATCH --partition=C032M0128G #SBATCH -J myFirstJob #SBATCH --nodes=1 #SBATCH --ntasks-per-node=2 module purge module load intel_parallel_studio/2017.1 mpirun -n 2 hostname 连接集群 linkVPN 连接方式 link从 Hillstone Secure Connect 下载最新版的支持 SSL VPN 功能的客户端，并使用 VPN 用户名与密码即可登录 VPN。</description>
     </item>
     
   </channel>
