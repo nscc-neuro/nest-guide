@@ -3,9 +3,8 @@ name: Sync Yuque
 on: 
   workflow_dispatch: 
   schedule: 
-    # 北京时间每日中午12点
-    # - cron: "0 12 * * *"
-    - cron: "0 6 * * *"
+    # 北京时间每日2点和14点准时执行
+    - cron: "0 6,18 * * *"
 
 jobs: 
   sync-yuque: 
