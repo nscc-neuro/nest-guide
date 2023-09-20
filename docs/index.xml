@@ -32,7 +32,7 @@ git config --global http.proxy http://10.20.18.21:3128 git config --global https
       
       <guid>https://nscc-neuro.github.io/nest-guide/docs/cg68ylfgx0u7dmfg/</guid>
       <description>快速入门 link在获取上机账号后， Linux\Mac 用户可通过命令行登录集群， Windows 用户则可以通过 ssh 客户端登录集群；登录集群后，编写作业脚本，并通过 sbatch 指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module 指令导入计算环境。
-**先登录集群， **登录前确保网络环境为内网 VPN
+先登录集群**，**登录前确保网络环境为内网 VPN
 Linux\Mac 用户直接使用系统自带的终端通过ssh命令登录：
 ssh user_name@ip_address -i /path/to/private_key Window 用户可使用Xshell客户端进行登陆。下载Xshell，选择免费许可版，为了方便文件传输，可同时下载并安装 Xftp，安装完后点击软件左上角新建连接，输入IP和用户名，选择私钥文件即可登录；
 登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行。
