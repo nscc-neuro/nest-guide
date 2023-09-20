@@ -67,7 +67,8 @@ git config --global https.proxy http://10.20.18.21:3128
 在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：
 
 ```bash
-./bootstrap.sh --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3'
+./bootstrap.sh --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/boost/1.81.0-gcc-12.2.0 \
+CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3'
 ```
 
 ## 6. 安装 GNU Scientific Library
@@ -79,7 +80,8 @@ git config --global https.proxy http://10.20.18.21:3128
 在 GSL 根目录执行以下命令安装 GSL（需要将路径换成自己的安装路径）：
 
 ```bash
-./configure --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-8.4.0 CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3'
+./configure --prefix=/GPUFS/sysu_hpcscc_1/lvtx/tools/gsl/2.7.1-gcc-8.4.0 \
+CC=gcc CXX=g++ FC=gfortran CFLAGS='-O3' CXXFLAGS='-O3' FCFLAGS='-O3'
 ```
 
 ## 7. 安装 NEST
@@ -115,7 +117,6 @@ cmake -DCMAKE_C_COMPILER=mpicc \
 NEST_BASE_PATH=/GPUFS/nsccgz_zgchen_2/zyl/tools/nest-simulator/3.4-gcc-8.4.0
 source $NEST_BASE_PATH/bin/nest_vars.sh
 ```
-## 
 ## 8. 运行 hpc_benchmark.py
 在您安装的 NEST 目标路径中，hpc_benchmark.py 位于<NEST安装目标路径>/share/doc/nest/examples/pynest/hpc_benchmark.py ，您需要修改其中的 params 以并行运行更大的模型。
 
@@ -138,3 +139,47 @@ mpiexec -N 1 -n 2 -p gpu_v100 --export=all python3 hpc_benchmark.py
 其中 -N 指定节点个数， -n 指定所有节点总共的MPI进程数，-p 指定 slurm 从该分区分配节点（sinfo查看各节点），--export 导出所有环境变量。
 这将耗费大抵一分钟，随后您将在终端看到 NEST 来自两个MPI 进程的双份输出；同时，会在运行启动指令的目录下得到输出文件。 #TODO： 定向输出文件
 
+## 9. 环境变量文件示例
+```bash
+#!/bin/bash
+
+export CONDA_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/miniconda3
+export PATH=$CONDA_PATH/bin:$PATH
+
+export http_proxy=http://10.20.18.21:3128
+export HTTP_PROXY=http://10.20.18.21:3128
+export https_proxy=http://10.20.18.21:3128
+export HTTPS_PROXY=http://10.20.18.21:3128
+git config --global http.proxy http://10.20.18.21:3128
+git config --global https.proxy http://10.20.18.21:3128
+
+export no_proxy="localhost,127.0.0.1"
+
+module load gcc/8.4.0
+module load mvapich2/2.3.7-gcc-8.4.0
+module load cmake
+
+export CMAKE_PREFIX_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/boost/1.77.0-gcc-8.4.0/lib/cmake:$CMAKE_PREFIX_PATH
+export CPATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/boost/1.77.0-gcc-8.4.0/include:$CPATH
+export LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/boost/1.77.0-gcc-8.4.0/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/boost/1.77.0-gcc-8.4.0/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/boost/1.77.0-gcc-8.4.0/lib:$LD_RUN_PATH
+
+export PKG_CONFIG_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/gsl/2.7.1-gcc-8.4.0/lib/pkgconfig:$PKG_CONFIG_PATH
+export PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/gsl/2.7.1-gcc-8.4.0/bin:$PATH
+export CPATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/gsl/2.7.1-gcc-8.4.0/include:$CPATH
+export LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/gsl/2.7.1-gcc-8.4.0/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/gsl/2.7.1-gcc-8.4.0/lib:$LD_LIBRARY_PATH
+export LD_RUN_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/tools/gsl/2.7.1-gcc-8.4.0/lib:$LD_RUN_PATH
+
+export LIBRARY_PATH="/GPUFS/nsccgz_zgchen_2/pangshzh/tools/nest-simulator/3.0-gcc-8.4.0/lib64/nest:${LIBRARY_PATH}"
+export LD_LIBRARY_PATH="/GPUFS/nsccgz_zgchen_2/pangshzh/tools/nest-simulator/3.0-gcc-8.4.0/lib64/nest:${LD_LIBRARY_PATH}"
+source /GPUFS/nsccgz_zgchen_2/pangshzh/tools/nest-simulator/3.0-gcc-8.4.0/bin/nest_vars.sh
+export OMP_NUM_THREADS=14
+
+```
+
+每次登录集群时（包括salloc申请计算节点登录后），记得执行以下命令：
+```bash
+source set-env.sh
+```
