@@ -18,7 +18,7 @@
 
 <html lang="zh-cn"><head>
     <meta charset="utf-8" />
-    <title>NEST 集群版部署记录 | NEST 集群部署文档</title>
+    <title>远程连接集群（Slurm）上的 jupyter lab | NEST 集群部署文档</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Documentation, Hugo, Hugo Theme, Bootstrap" />
     <meta name="author" content="Colin Wilson - Lotus Labs" />
@@ -84,7 +84,7 @@
                 
                     
                         
-                        <li class="current">
+                        <li class="">
                             <a class="sidebar-root-link" href="https://nscc-neuro.github.io/nest-guide/docs/oztm79xgq93290rc/">
                                 <i class="material-icons me-2">menu_book</i>
                                 
@@ -106,7 +106,7 @@
                 
                     
                         
-                        <li class="">
+                        <li class="current">
                             <a class="sidebar-root-link" href="https://nscc-neuro.github.io/nest-guide/docs/fqy4b2b061msp8gr/">
                                 <i class="material-icons me-2">menu_book</i>
                                 
@@ -254,7 +254,7 @@
             
         
             <li class="breadcrumb-item text-capitalize active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <span itemprop="name">NEST 集群版部署记录</span>
+                <span itemprop="name">远程连接集群（Slurm）上的 jupyter lab</span>
                 <meta itemprop="position" content='2' />
             </li>
         
@@ -269,15 +269,9 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#1-设置内网-vpn">1. 设置内网 VPN</a></li>
-        <li><a href="#2-登录集群">2. 登录集群</a></li>
-        <li><a href="#3-设置外网代理">3. 设置外网代理</a></li>
-        <li><a href="#4-安装-miniconda3">4. 安装 Miniconda3</a></li>
-        <li><a href="#5-安装-boost">5. 安装 Boost</a></li>
-        <li><a href="#6-安装-gnu-scientific-library">6. 安装 GNU Scientific Library</a></li>
-        <li><a href="#7-安装-nest">7. 安装 NEST</a></li>
-        <li><a href="#8-运行-hpc_benchmarkpy">8. 运行 hpc_benchmark.py</a></li>
-        <li><a href="#9-环境变量文件示例">9. 环境变量文件示例</a></li>
+        <li><a href="#安装-jupyter-lab">安装 jupyter lab</a></li>
+        <li><a href="#启动-jupyter-lab">启动 jupyter lab</a></li>
+        <li><a href="#建立隧道">建立隧道</a></li>
       </ul>
     </li>
   </ul>
@@ -293,15 +287,9 @@
   <ul class="dropdown-menu">
     <li>
       <ul>
-        <li><a href="#1-设置内网-vpn">1. 设置内网 VPN</a></li>
-        <li><a href="#2-登录集群">2. 登录集群</a></li>
-        <li><a href="#3-设置外网代理">3. 设置外网代理</a></li>
-        <li><a href="#4-安装-miniconda3">4. 安装 Miniconda3</a></li>
-        <li><a href="#5-安装-boost">5. 安装 Boost</a></li>
-        <li><a href="#6-安装-gnu-scientific-library">6. 安装 GNU Scientific Library</a></li>
-        <li><a href="#7-安装-nest">7. 安装 NEST</a></li>
-        <li><a href="#8-运行-hpc_benchmarkpy">8. 运行 hpc_benchmark.py</a></li>
-        <li><a href="#9-环境变量文件示例">9. 环境变量文件示例</a></li>
+        <li><a href="#安装-jupyter-lab">安装 jupyter lab</a></li>
+        <li><a href="#启动-jupyter-lab">启动 jupyter lab</a></li>
+        <li><a href="#建立隧道">建立隧道</a></li>
       </ul>
     </li>
   </ul>
@@ -310,7 +298,7 @@
                                         <div class="mb-0 d-flex">
                                             
                                             <h1 class="content-title mb-0">
-                                                NEST 集群版部署记录
+                                                远程连接集群（Slurm）上的 jupyter lab
                                                 
                                             </h1>
                                         </div>
@@ -321,7 +309,167 @@
                                             
     
     <div data-prismjs-copy="" data-prismjs-copy-success="" data-prismjs-copy-error="">
-        <h2 id="1-设置内网-vpn">1. 设置内网 VPN <a href="#1-%e8%ae%be%e7%bd%ae%e5%86%85%e7%bd%91-vpn" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://www.hillstonenet.com.cn/support-and-training/hillstone-secure-connect/" rel="external" target="_blank">Hillstone Secure Connect<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载最新版的支持 SSL VPN 功能的客户端。</p>
+        <h2 id="安装-jupyter-lab">安装 jupyter lab <a href="#%e5%ae%89%e8%a3%85-jupyter-lab" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>首先，下载并安装Miniconda。可以从Miniconda的官方网站（<a href="https://docs.conda.io/en/latest/miniconda.html" rel="external" target="_blank">https://docs.conda.io/en/latest/miniconda.html<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a>）下载。
+安装完成后，打开终端，创建一个新的 conda 环境，可以使用以下命令：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="fc067a7" class="language-bash ">
+  <code>conda create -n jupyter python=3.10</code>
+  </pre>
+  </div>
+<p>然后，激活新创建的环境</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="98ba4ee" class="language-bash ">
+  <code>source activate jupyter</code>
+  </pre>
+  </div>
+<p>在激活的环境中，使用如下的命令安装 jupyter lab</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="e26c277" class="language-bash ">
+  <code>conda install -c conda-forge jupyterlab</code>
+  </pre>
+  </div>
+<h2 id="启动-jupyter-lab">启动 jupyter lab <a href="#%e5%90%af%e5%8a%a8-jupyter-lab" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>安装完成后，在计算节点（比如 gpu_v100分区下的gpu22节点) 上启动jupyter</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="b142293" class="language-bash ">
+  <code>jupyter-lab --no-browser --port=8014 --ip=127.0.0.1</code>
+  </pre>
+  </div>
+<p>启动后如下：
+
+
+
+
+
+
+  
+
+
+
+  
+    
+      <img src="/nest-guide/106b5ea8a2d77f07475bff7e96791bc8_4216444766108086044.png" alt="image.png" width="1623" height="681" loading="lazy">
+    
+  
+
+以上启动完毕。</p>
+<h2 id="建立隧道">建立隧道 <a href="#%e5%bb%ba%e7%ab%8b%e9%9a%a7%e9%81%93" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>在本地电脑cmd输入如下代码，建立隧道。</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="943d36a" class="language-bash ">
+  <code>ssh -t -t  nsccgz_zgchen_2@172.16.20.102 -L 8014:localhost:8014 ssh 89.72.32.22  -L 8014:127.0.0.1:8014</code>
+  </pre>
+  </div>
+<p>这里 nsccgz_zgchen_2 是中间登录节点的用户名，172.16.20.102是中间登录节点的IP， 89.72.32.22是计算节点的IP，8014是port号可以换成你自己喜欢的数字。
+计算节点的ip一般是不知道的，可以通过如下方式获得：</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="879de0b" class="language-bash ">
+  <code>cat /etc/hosts | grep node/to/search</code>
+  </pre>
+  </div>
+<p>即可看到计算节点对应的IP。
+建立隧道完成后，在本地浏览器输入如下代码，即可成功访问。</p>
+
+
+
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+
+  <div class="prism-codeblock ">
+  <pre id="f475522" class="language-bash ">
+  <code>https://127.0.0.1:8014</code>
+  </pre>
+  </div>
 <p>
 
 
@@ -334,352 +482,11 @@
 
   
     
-      <img src="/nest-guide/55459dc850de5d7fa7b882904e3ee870_15127920764272286061.png" alt="" width="1900" height="565" loading="lazy">
+      <img src="/nest-guide/06f692a42fb18a86f8d18770d325836e_3304677623977059226.png" alt="image.png" width="1933" height="1027" loading="lazy">
     
   
-</p>
-<p>输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。</p>
-<h2 id="2-登录集群">2. 登录集群 <a href="#2-%e7%99%bb%e5%bd%95%e9%9b%86%e7%be%a4" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>Mac用户首先将秘钥文件放到.ssh文件夹内，并在.ssh文件夹内的config文件中添加如下信息：</p>
 
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="e618c24" class="language-json ">
-  <code>Host SelfDefineName
-  HostName 172.16.20.102
-  IdentityFile Path/to/Private_key
-  User Username</code>
-  </pre>
-  </div>
-<p>在登录内网VPN的前提下，可在终端输入命令ssh SelfDefineName测试集群连接是否成功，或直接使用vscode连接集群。注意：连接集群必须使用VPN。</p>
-<h2 id="3-设置外网代理">3. 设置外网代理 <a href="#3-%e8%ae%be%e7%bd%ae%e5%a4%96%e7%bd%91%e4%bb%a3%e7%90%86" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>在环境变量中配置：</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="9f4f896" class="language-shell ">
-  <code>export http_proxy=http://10.20.18.21:3128
-export HTTP_PROXY=http://10.20.18.21:3128
-export https_proxy=http://10.20.18.21:3128
-export HTTPS_PROXY=http://10.20.18.21:3128
-export no_proxy=&#34;localhost,127.0.0.1&#34;</code>
-  </pre>
-  </div>
-<p>在命令行配置：</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="9270702" class="language-bash ">
-  <code>git config --global http.proxy http://10.20.18.21:3128
-git config --global https.proxy http://10.20.18.21:3128</code>
-  </pre>
-  </div>
-<h2 id="4-安装-miniconda3">4. 安装 Miniconda3 <a href="#4-%e5%ae%89%e8%a3%85-miniconda3" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://repo.anaconda.com/miniconda/Miniconda3-py39_23.5.2-0-Linux-x86_64.sh" rel="external" target="_blank">Miniconda3 官方网站<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 Miniconda3。</p>
-<p>执行 <code>Miniconda3-py39_23.5.2-0-Linux-x86_64.sh</code> ，按照提示安装 Miniconda3。（我安装在software目录下）</p>
-<h2 id="5-安装-boost">5. 安装 Boost <a href="#5-%e5%ae%89%e8%a3%85-boost" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.gz" rel="external" target="_blank">Boost 官方网站<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 Boost。</p>
-<p>解压  <code>boost_1_77_0.tar.gz</code> 文件。</p>
-<p>在 Boost 根目录下执行以下命令安装 Boost（需要将路径换成自己的安装路径）：</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="84411e9" class="language-bash ">
-  <code>srun -N 1 -p gpu_v100 ./bootstrap.sh --prefix=/GPUFS/nsccgz_zgchen_2/pangshzh/software/boost/1.77.0-gcc-8.4.0 \
-CC=gcc CXX=g&#43;&#43; FC=gfortran CFLAGS=&#39;-O3&#39; CXXFLAGS=&#39;-O3&#39; FCFLAGS=&#39;-O3&#39;</code>
-  </pre>
-  </div>
-<h2 id="6-安装-gnu-scientific-library">6. 安装 GNU Scientific Library <a href="#6-%e5%ae%89%e8%a3%85-gnu-scientific-library" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz" rel="external" target="_blank">GNU Scientific Library 镜像站<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 GSL。</p>
-<p>解压 gsl-latest.tar.gz。</p>
-<p>在 GSL 根目录执行以下命令安装 GSL（需要将路径换成自己的安装路径）：</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="3d57321" class="language-bash ">
-  <code>srun -N 1 -p gpu_v100 ./configure --prefix=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0 \
-CC=gcc CXX=g&#43;&#43; FC=gfortran CFLAGS=&#39;-O3&#39; CXXFLAGS=&#39;-O3&#39; FCFLAGS=&#39;-O3&#39;
-
-# 在同目录下执行
-srun -N 1 -p gpu_v100 make install</code>
-  </pre>
-  </div>
-<h2 id="7-安装-nest">7. 安装 NEST <a href="#7-%e5%ae%89%e8%a3%85-nest" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>从 <a href="https://github.com/nest/nest-simulator/archive/refs/tags/v3.4.tar.gz" rel="external" target="_blank">NEST github仓库<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a> 下载 NEST 3.4。</p>
-<p>解压 v3.4.tar.gz。</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="85000df" class="language-bash ">
-  <code>srun -N 1 -p gpu_v100 tar -xvzf v3.4.tar.gz</code>
-  </pre>
-  </div>
-<p>使用 pip 安装 numpy, scipy, cython:</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="240bc4c" class="language-bash ">
-  <code>pip3 install numpy scipy cython</code>
-  </pre>
-  </div>
-<p>在 nest-simulator-3.4 目录下执行（需要将路径换成自己的路径，先申请一个GPU节点再编译）：</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="d46e55e" class="language-bash ">
-  <code>cmake -DCMAKE_C_COMPILER=mpicc \
-      -DCMAKE_CXX_COMPILER=mpicxx \
-      -Dwith-mpi=/GPUFS/app_GPU/MPI/mvapich2/2.3.7-gcc-8.4.0/bin/mpiexec \
-      -DCMAKE_C_FLAGS=&#39;-O3 -fPIC&#39; \
-      -DCMAKE_CXX_FLAGS=&#39;-O3&#39; \
-      -Dwith-boost=/GPUFS/nsccgz_zgchen_2/pangshzh/software/boost/1.77.0-gcc-8.4.0 \
-      -DGSL_INCLUDE_DIR=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/include \
-      -DGSL_LIBRARY=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/lib/libgsl.a \
-      -DGSL_CBLAS_LIBRARY=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/lib/libgslcblas.a \
-      -DCMAKE_INSTALL_PREFIX:PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/nest-simulator/3.0-gcc-8.4.0 .</code>
-  </pre>
-  </div>
-<p>运行nest前需要配置nest环境，即source /GPUFS/nsccgz_zgchen_2/zyl/tools/nest-simulator/3.4-gcc-8.4.0/bin/nest_vars.sh （需要将路径换成自己的路径）。或者直接在env.sh中增加如下语句：</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="0b8fa0c" class="language-bash ">
-  <code># NEST 3.4 config
-NEST_BASE_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/nest-simulator/3.4-gcc-8.4.0
-source $NEST_BASE_PATH/bin/nest_vars.sh</code>
-  </pre>
-  </div>
-<h2 id="8-运行-hpc_benchmarkpy">8. 运行 hpc_benchmark.py <a href="#8-%e8%bf%90%e8%a1%8c-hpc_benchmarkpy" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>在您安装的 NEST 目标路径中，hpc_benchmark.py 位于&lt;NEST安装目标路径&gt;/share/doc/nest/examples/pynest/hpc_benchmark.py ，您需要修改其中的 params 以并行运行更大的模型。</p>
-<ol>
-<li>修改 nvp 为所需 MPI进程数 × 每进程线程数，如 2 MPI进程 × 14线程 = 28</li>
-<li>设置合适的scale，如10。更大的需要更多nvp。</li>
-</ol>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="8047f57" class="language-python ">
-  <code>params = {
-    &#39;nvp&#39;: 28,               # total number of virtual processes
-    &#39;scale&#39;: 10.,            # scaling factor of the network size
-    # others...
-}</code>
-  </pre>
-  </div>
-<p>设置环境变量以指示每个 MPI 进程启用线程数量，然后使用 mpiexec 运行</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="cfaf747" class="language-shell ">
-  <code>export OMP_NUM_THREADS=14
-mpiexec -N 1 -n 2 -p gpu_v100 --export=all python3 hpc_benchmark.py</code>
-  </pre>
-  </div>
-<p>其中 -N 指定节点个数， -n 指定所有节点总共的MPI进程数，-p 指定 slurm 从该分区分配节点（sinfo查看各节点），&ndash;export 导出所有环境变量。
-这将耗费大抵一分钟，随后您将在终端看到 NEST 来自两个MPI 进程的双份输出；同时，会在运行启动指令的目录下得到输出文件。 #TODO： 定向输出文件</p>
-<h2 id="9-环境变量文件示例">9. 环境变量文件示例 <a href="#9-%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%96%87%e4%bb%b6%e7%a4%ba%e4%be%8b" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2>
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="afacc67" class="language-bash ">
-  <code>#!/bin/bash
-
-export CONDA_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/miniconda3
-export PATH=$CONDA_PATH/bin:$PATH
-
-export http_proxy=http://10.20.18.21:3128
-export HTTP_PROXY=http://10.20.18.21:3128
-export https_proxy=http://10.20.18.21:3128
-export HTTPS_PROXY=http://10.20.18.21:3128
-git config --global http.proxy http://10.20.18.21:3128
-git config --global https.proxy http://10.20.18.21:3128
-
-export no_proxy=&#34;localhost,127.0.0.1&#34;
-
-module load gcc/8.4.0
-module load mvapich2/2.3.7-gcc-8.4.0
-module load cmake
-
-# BOOST
-export CMAKE_PREFIX_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/boost/1.77.0-gcc-8.4.0/lib/cmake:$CMAKE_PREFIX_PATH
-export CPATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/boost/1.77.0-gcc-8.4.0/include:$CPATH
-export LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/boost/1.77.0-gcc-8.4.0/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/boost/1.77.0-gcc-8.4.0/lib:$LD_LIBRARY_PATH
-export LD_RUN_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/boost/1.77.0-gcc-8.4.0/lib:$LD_RUN_PATH
-
-# GSL
-export PKG_CONFIG_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/lib/pkgconfig:$PKG_CONFIG_PATH
-export PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/bin:$PATH
-export CPATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/include:$CPATH
-export LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/lib:$LD_LIBRARY_PATH
-export LD_RUN_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/gsl/2.7.1-gcc-8.4.0/lib:$LD_RUN_PATH
-
-# NEST
-export LIBRARY_PATH=&#34;/GPUFS/nsccgz_zgchen_2/pangshzh/software/nest-simulator/3.4-gcc-8.4.0/lib64/nest:${LIBRARY_PATH}&#34;
-export LD_LIBRARY_PATH=&#34;/GPUFS/nsccgz_zgchen_2/pangshzh/software/nest-simulator/3.4-gcc-8.4.0/lib64/nest:${LD_LIBRARY_PATH}&#34;
-source /GPUFS/nsccgz_zgchen_2/pangshzh/software/nest-simulator/3.4-gcc-8.4.0/bin/nest_vars.sh
-
-# MiniConda
-source activate</code>
-  </pre>
-  </div>
-<p>每次登录集群时（包括salloc申请计算节点登录后），记得执行以下命令：</p>
-
-
-
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-
-  <div class="prism-codeblock ">
-  <pre id="c523b8f" class="language-bash ">
-  <code>source set-env.sh</code>
-  </pre>
-  </div>
+然后你就可以流畅地在上面使用 python 编写交互式程序了。</p>
 
     </div>
 
@@ -699,7 +506,7 @@ source activate</code>
 
 <div class="gitinfo d-flex flex-wrap justify-content-between align-items-center opacity-85 pt-3">
     <div id="edit-this-page" class="mt-1">
-        <a href="https://github.com/nscc-neuro/nest-guide/blob/main/content/docs/oztm79xgq93290rc.md" alt="NEST 集群版部署记录" rel="noopener noreferrer" target="_blank">
+        <a href="https://github.com/nscc-neuro/nest-guide/blob/main/content/docs/fqy4b2b061msp8gr.md" alt="远程连接集群（Slurm）上的 jupyter lab" rel="noopener noreferrer" target="_blank">
             
             <span class="me-1 align-text-bottom">
                 
@@ -717,9 +524,9 @@ source activate</code>
     <div id="last-modified" class="mt-1">
         <p class="mb-0 fw-semibold">Last updated <span
             id="relativetime"
-            data-authdate="2023-09-26T18:29:45Z"
-            title="26 Sep 2023, 18:29 UTC">
-            26 Sep 2023, 18:29 UTC
+            data-authdate="2023-10-11T09:26:44Z"
+            title="11 Oct 2023, 09:26 UTC">
+            11 Oct 2023, 09:26 UTC
         </span>. <span class="material-icons size-20 align-text-bottom opacity-75">history</span>
         </p>
     </div>
@@ -733,13 +540,13 @@ source activate</code>
                                         <div><hr class="doc-hr">
 <div id="doc-nav" class="d-print-none">
 
-	<div class="row flex-xl-nowrap flex-row-reverse">
-	<div class="col-sm-6 pt-2 doc-prev">
-		<a class="ms-auto" href="/nest-guide/docs/cg68ylfgx0u7dmfg/">
-			<div class="card h-100 my-1 text-end">
+	<div class="row flex-xl-nowrap ">
+	<div class="col-sm-6 pt-2 doc-next">
+		<a href="/nest-guide/docs/cg68ylfgx0u7dmfg/">
+			<div class="card h-100 my-1">
 				<div class="card-body py-2">
-                    <p class="card-title fs-5 fw-semibold lh-base mb-0">th2k 超算使用教程 <i class="material-icons align-middle">navigate_next</i></p>
-					<p class="card-text me-2"></p>
+                    <p class="card-title fs-5 fw-semibold lh-base mb-0"><i class="material-icons align-middle">navigate_before</i> th2k 超算使用教程</p>
+					<p class="card-text ms-2"></p>
 					
 				</div>
 			</div>
