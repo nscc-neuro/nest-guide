@@ -115,6 +115,17 @@
                         </li>
                     
                 
+                    
+                        
+                        <li class="">
+                            <a class="sidebar-root-link" href="https://nscc-neuro.github.io/nest-guide/docs/gpu1kvy7kivvlzps/">
+                                <i class="material-icons me-2">menu_book</i>
+                                
+                                Neuron 8.2.3 部署记录
+                            </a>
+                        </li>
+                    
+                
             
         </ul>
         
@@ -552,6 +563,17 @@
 			</div>
 		</a>
         </div>
+	<div class="col-sm-6 pt-2 doc-prev">
+		<a class="ms-auto" href="/nest-guide/docs/gpu1kvy7kivvlzps/">
+			<div class="card h-100 my-1 text-end">
+				<div class="card-body py-2">
+                    <p class="card-title fs-5 fw-semibold lh-base mb-0">Neuron 8.2.3 部署记录 <i class="material-icons align-middle">navigate_next</i></p>
+					<p class="card-text me-2"></p>
+					
+				</div>
+			</div>
+		</a>
+        </div>
 	</div>
 </div></div>
                                     </div>
@@ -742,6 +764,13 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
 
 
     
@@ -782,6 +811,15 @@
                 title: "远程连接集群（Slurm）上的 jupyter lab",
                 description: "安装 jupyter lab link首先，下载并安装Miniconda。可以从Miniconda的官方网站（https://docs.conda.io/en/latest/miniconda.html）下载。 安装完成后，打开终端，创建一个新的 conda 环境，可以使用以下命令：\nconda create -n jupyter python=3.10 然后，激活新创建的环境\nsource activate jupyter 在激活的环境中，使用如下的命令安装 jupyter lab\nconda install -c conda-forge jupyterlab 启动 jupyter lab link安装完成后，在计算节点（比如 gpu_v100分区下的gpu22节点) 上启动jupyter\njupyter-lab --no-browser --port=8014 --ip=127.0.0.1 启动后如下： 以上启动完毕。\n建立隧道 link在本地电脑cmd输入如下代码，建立隧道。\nssh -t -t nsccgz_zgchen_2@172.16.20.102 -L 8014:localhost:8014 ssh 89.72.32.22 -L 8014:127.0.0.1:8014 这里 nsccgz_zgchen_2 是中间登录节点的用户名，172.16.20.102是中间登录节点的IP， 89.72.32.22是计算节点的IP，8014是port号可以换成你自己喜欢的数字。 计算节点的ip一般是不知道的，可以通过如下方式获得：\ncat /etc/hosts | grep node/to/search 即可看到计算节点对应的IP。 建立隧道完成后，在本地浏览器输入如下代码，即可成功访问。\nhttps://127.0.0.1:8014 然后你就可以流畅地在上面使用 python 编写交互式程序了。",
                 content: "安装 jupyter lab link首先，下载并安装Miniconda。可以从Miniconda的官方网站（https://docs.conda.io/en/latest/miniconda.html）下载。 安装完成后，打开终端，创建一个新的 conda 环境，可以使用以下命令：\nconda create -n jupyter python=3.10 然后，激活新创建的环境\nsource activate jupyter 在激活的环境中，使用如下的命令安装 jupyter lab\nconda install -c conda-forge jupyterlab 启动 jupyter lab link安装完成后，在计算节点（比如 gpu_v100分区下的gpu22节点) 上启动jupyter\njupyter-lab --no-browser --port=8014 --ip=127.0.0.1 启动后如下： 以上启动完毕。\n建立隧道 link在本地电脑cmd输入如下代码，建立隧道。\nssh -t -t nsccgz_zgchen_2@172.16.20.102 -L 8014:localhost:8014 ssh 89.72.32.22 -L 8014:127.0.0.1:8014 这里 nsccgz_zgchen_2 是中间登录节点的用户名，172.16.20.102是中间登录节点的IP， 89.72.32.22是计算节点的IP，8014是port号可以换成你自己喜欢的数字。 计算节点的ip一般是不知道的，可以通过如下方式获得：\ncat /etc/hosts | grep node/to/search 即可看到计算节点对应的IP。 建立隧道完成后，在本地浏览器输入如下代码，即可成功访问。\nhttps://127.0.0.1:8014 然后你就可以流畅地在上面使用 python 编写交互式程序了。\n"
+            }
+        );
+    index.add(
+            {
+                id:  4 ,
+                href: "\/nest-guide\/docs\/gpu1kvy7kivvlzps\/",
+                title: "Neuron 8.2.3 部署记录",
+                description: "安装所需依赖项 link为了从源代码构建 Neuron-8.2.3，需要提供以下程序包： Bison Flex \u003e= 2.6 C/C++ compiler suite supporting C++17 (e.g. GCC \u003e=9.3.1, Clang \u003e= 11.0.0) 注意，C++17的某些功能需要较新的编译器版本。 C++17功能必须在不链接额外库的情况下可用。这特别排除了一些旧版本的GCC，其中std::FileSystem需要libstdc++fs.so。 CMake \u003e= 3.15 (\u003e= 3.18 if -DNRN_ENABLE_PYTHON_DYNAMIC=ON) Python \u003e=3.8 (for Python interface) Cython \u003c 3 (for RXD) MPI (for parallel) X11 (for GUI) 我选择的环境是： gcc 11.2.0 CMake 3.27.7-gcc-11.2.0 Cython 0.29.36 MPI openmpi 4.1.6-gcc-11.2.0 Python 3.10.12 加载代理网络环境 link加载代理网络环境的脚本如下，如果你没有的话建议创建一个 export http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 git config --global http.proxy http://10.20.18.21:3128 git config --global https.",
+                content: "安装所需依赖项 link为了从源代码构建 Neuron-8.2.3，需要提供以下程序包：\nBison Flex \u003e= 2.6 C/C++ compiler suite supporting C++17 (e.g. GCC \u003e=9.3.1, Clang \u003e= 11.0.0) 注意，C++17的某些功能需要较新的编译器版本。 C++17功能必须在不链接额外库的情况下可用。这特别排除了一些旧版本的GCC，其中std::FileSystem需要libstdc++fs.so。 CMake \u003e= 3.15 (\u003e= 3.18 if -DNRN_ENABLE_PYTHON_DYNAMIC=ON) Python \u003e=3.8 (for Python interface) Cython \u003c 3 (for RXD) MPI (for parallel) X11 (for GUI) 我选择的环境是：\ngcc 11.2.0 CMake 3.27.7-gcc-11.2.0 Cython 0.29.36 MPI openmpi 4.1.6-gcc-11.2.0 Python 3.10.12 加载代理网络环境 link加载代理网络环境的脚本如下，如果你没有的话建议创建一个\nexport http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 git config --global http.proxy http://10.20.18.21:3128 git config --global https.proxy http://10.20.18.21:3128 export no_proxy=\"localhost,127.0.0.1\" 首先，在登录节点执行以下命令以设置网络代理\nsource proxy.sh 安装 GCC-11.2.0 link 下载 GCC-11.2.0 源代码 wget http://mirror.linux-ia64.org/gnu/gcc/releases/gcc-11.2.0/gcc-11.2.0.tar.gz 解压源代码压缩文件包 srun -N 1 -p gpu_v100_test tar -xzvf gcc-11.2.0.tar.gz 下载 GCC 依赖项 cd gcc-11.2.0 ./contrib/download_prerequisites 编译安装 GCC srun -N 1 -p gpu_v100_test ./configure --prefix=/path/to/install \\ --enable-bootstrap \\ --enable-languages=c,c++ \\ --enable-threads=posix \\ --enable-checking=release \\ --disable-multilib \\ --with-system-zlib \\ \u0026\u0026 make -j$(nproc) \\ \u0026\u0026 make install 新建一个 modulefile 文件，路径自己定，推荐在自己的目录下新建一个modulefiles目录，然后新建一个gcc/11.2.0 文件，文件内容如下：（root更换成GCC-11.2.0的安装路径） #%Module###################################################################### ## ## ## TianHe-2 software modulefile ## ## ## ############################################################################## proc ModulesHelp { } { puts stderr \"This is a gcc compiler\" puts stderr \"use the `-Wl,-rpath -Wl,LIBDIR' linker flag\" } conflict gcc set root /GPUFS/nsccgz_zgchen_2/pangshzh/software/gcc-11.2.0/usr/local prepend-path INCLUDE $root/include prepend-path CPATH $root/include prepend-path LD_LIBRARY_PATH $root/libexec prepend-path LD_LIBRARY_PATH $root/lib prepend-path LD_LIBRARY_PATH $root/lib64 prepend-path LIBRARY_PATH $root/libexec prepend-path LIBRARY_PATH $root/lib prepend-path LIBRARY_PATH $root/lib64 prepend-path PATH $root/bin setenv CC $root/bin/gcc setenv CXX $root/bin/g++ # Installed by whoami, xxxx/xx/xx ############################################################################## 之后就可以使用 module load /path/to/modulefile来加载GCC-11.2.0了，也可以加入以下环境变量，将整个modulefiles目录加入到MODULEPATH中，就可以通过 module avail找到自己所有的module包： export MODULEPATH=/path/to/modulefiles:$MODULEPATH 安装 CMake-3.27.7 link 下载 CMake 源代码： wget https://ghproxy.com/github.com/Kitware/CMake/archive/refs/tags/v3.27.7.tar.gz 解压源代码压缩文件包 srun -N 1 -p gpu_v100_test tar -xzvf v3.27.7.tar.gz 编译安装 CMake # 加载 gcc 11.2.0，需要在MODULEPATH中添加路径 module load gcc/11.2.0 cd CMake-3.27.7 srun -N 1 -p gpu_v100_test ./bootstrap --prefix=/path/to/install \\ \u0026\u0026 gmake \\ \u0026\u0026 make install 安装 Mvapich2-2.3.7 link 下载 Mvapich2 源代码： wget https://mvapich.cse.ohio-state.edu/download/mvapich/mv2/mvapich2-2.3.7-1.tar.gz 解压源代码压缩文件包 srun -N 1 -p gpu_v100_test tar -xzvf mvapich2-2.3.7-1.tar.gz 使用 GCC-11.2.0 编译安装 Mvapich2 cd mvapich2-2.3.7 srun -N 1 -p gpu_v100_test ./configure --prefix=/path/to/install \\ \u0026\u0026 make -j4 \\ \u0026\u0026 make install 下载并解压Neuron源代码 link 下载Neuron-8.2.3源代码 wget https://ghproxy.com/github.com/neuronsimulator/nrn/archive/refs/tags/8.2.3.tar.gz 解压源代码压缩文件包 srun -N 1 -p gpu_v100_test tar -xzvf 8.2.3.tar.gz 创建一个专用于Neuron的conda虚拟环境 link 首先配置好 CONDA_PATH export CONDA_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/miniconda3 export PATH=$CONDA_PATH/bin:$PATH // 切换到你的conda环境 source activate 创建虚拟环境，使用 python 3.10 conda create -n nrn python=3.10 conda activate nrn 安装 Cython \u003c 3 (for RXD) pip3 install cython==0.29.36 申请一个计算节点方便进行后续编译 link 申请计算节点 salloc -N 1 -p gpu_v100 通过 yhq查看你的节点位置，然后通过 ssh命令登录到申请的节点上，例如 ssh gpu39 加载所需环境 export CONDA_PATH=/GPUFS/nsccgz_zgchen_2/pangshzh/software/miniconda3 export PATH=$CONDA_PATH/bin:$PATH // 切换到你的conda环境 source activate conda activate nrn // 检查python路径是否正确，应该显示~/pangshzh/software/miniconda3/envs/nrn/bin/python which python // 加载 ncurses 库 module load ncurses // 加载 cmake module load cmake // 加载 gcc module load gcc/8.4.0 "
             }
         );
     search.addEventListener('input', show_results, true);

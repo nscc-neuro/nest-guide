@@ -6,7 +6,7 @@
     <description>Recent content in Beginners on NEST 集群部署文档</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 11 Oct 2023 09:11:59 +0000</lastBuildDate><atom:link href="https://nscc-neuro.github.io/nest-guide/tags/beginners/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Oct 2023 08:59:26 +0000</lastBuildDate><atom:link href="https://nscc-neuro.github.io/nest-guide/tags/beginners/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NEST 集群版部署记录</title>
       <link>https://nscc-neuro.github.io/nest-guide/docs/oztm79xgq93290rc/</link>
@@ -56,6 +56,18 @@ jupyter-lab --no-browser --port=8014 --ip=127.0.0.1 启动后如下： 以上启
 ssh -t -t nsccgz_zgchen_2@172.16.20.102 -L 8014:localhost:8014 ssh 89.72.32.22 -L 8014:127.0.0.1:8014 这里 nsccgz_zgchen_2 是中间登录节点的用户名，172.16.20.102是中间登录节点的IP， 89.72.32.22是计算节点的IP，8014是port号可以换成你自己喜欢的数字。 计算节点的ip一般是不知道的，可以通过如下方式获得：
 cat /etc/hosts | grep node/to/search 即可看到计算节点对应的IP。 建立隧道完成后，在本地浏览器输入如下代码，即可成功访问。
 https://127.0.0.1:8014 然后你就可以流畅地在上面使用 python 编写交互式程序了。</description>
+    </item>
+    
+    <item>
+      <title>Neuron 8.2.3 部署记录</title>
+      <link>https://nscc-neuro.github.io/nest-guide/docs/gpu1kvy7kivvlzps/</link>
+      <pubDate>Fri, 13 Oct 2023 08:59:26 +0000</pubDate>
+      
+      <guid>https://nscc-neuro.github.io/nest-guide/docs/gpu1kvy7kivvlzps/</guid>
+      <description>安装所需依赖项 link为了从源代码构建 Neuron-8.2.3，需要提供以下程序包：
+Bison Flex &amp;gt;= 2.6 C/C++ compiler suite supporting C++17 (e.g. GCC &amp;gt;=9.3.1, Clang &amp;gt;= 11.0.0) 注意，C++17的某些功能需要较新的编译器版本。 C++17功能必须在不链接额外库的情况下可用。这特别排除了一些旧版本的GCC，其中std::FileSystem需要libstdc++fs.so。 CMake &amp;gt;= 3.15 (&amp;gt;= 3.18 if -DNRN_ENABLE_PYTHON_DYNAMIC=ON) Python &amp;gt;=3.8 (for Python interface) Cython &amp;lt; 3 (for RXD) MPI (for parallel) X11 (for GUI) 我选择的环境是：
+gcc 11.2.0 CMake 3.27.7-gcc-11.2.0 Cython 0.29.36 MPI openmpi 4.1.6-gcc-11.2.0 Python 3.10.12 加载代理网络环境 link加载代理网络环境的脚本如下，如果你没有的话建议创建一个
+export http_proxy=http://10.20.18.21:3128 export HTTP_PROXY=http://10.20.18.21:3128 export https_proxy=http://10.20.18.21:3128 export HTTPS_PROXY=http://10.20.18.21:3128 git config --global http.proxy http://10.20.18.21:3128 git config --global https.</description>
     </item>
     
   </channel>
