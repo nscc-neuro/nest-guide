@@ -275,8 +275,8 @@ srun -N 1 -p gpu_v100_test tar -xzvf ncurses-6.4.tar.gz
 ```bash
 cd ncurses-6.4
 module load gcc/11.2.0
-srun -N 1 -p gpu_v100_test ./configure --prefix=/path/to/install \
-&& make \
+srun -N 1 -p gpu_v100_test CFLAGS="-fPIC" ./configure --prefix=/path/to/install --with-shared \
+&& make -j$(nproc) \
 && make install
 ```
 
@@ -319,9 +319,39 @@ srun -N 1 -p gpu_v100_test tar -xzvf readline-8.2.tar.gz
 3. 使用 GCC-11.2.0 编译 readline
 ```bash
 cd readline-8.2
-srun -N 1 -p gpu_v100_test ./configure --prefix=/path/to/install \
+srun -N 1 -p gpu_v100_test CFLAGS="-fPIC" ./configure --prefix=/path/to/install \
+--with-curses
+
 && make -j$(nproc) \
 && make install 
+```
+
+4. 新建一个 `modulefiles`文件在目录 modulefiles/readline 下，名为 `8.2-gcc-11.2.0`，如下所示：
+```bash
+#%Module#######################################################################
+##                                                                           ##
+##                       TianHe-2 software modulefile                        ##
+##                                                                           ##
+###############################################################################
+
+proc ModulesHelp { } {
+    puts stderr "This is a readline library"
+}
+
+module-whatis "For more information, \$ module help readline/8.2-gcc-11.2.0"
+
+conflict readline
+module load ncurses/6.4-gcc-11.2.0
+
+set path /GPUFS/nsccgz_zgchen_2/pangshzh/software/readline/8.2-gcc-11.2.0
+
+prepend-path LD_LIBRARY_PATH ${path}/lib
+prepend-path LIBRARY_PATH ${path}/lib
+prepend-path CPATH ${path}/include
+prepend-path C_INCLUDE_PATH ${path}/include
+prepend-path INCLUDE ${path}/include
+
+###############################################################################
 ```
 ## 克隆 Neuron 仓库
 ```bash
@@ -377,15 +407,12 @@ conda activate nrn
 // 检查python路径是否正确，应该显示~/pangshzh/software/miniconda3/envs/nrn/bin/python
 which python
 
-// 加载 ncurses 库
+// 加载 ncurses、cmake、gcc、mvapich2、readline
 module load ncurses/6.4-gcc-11.2.0
-// 加载 cmake
 module load cmake/3.27.7
-// 加载 gcc
 module load gcc/11.2.0
-// 加载 mvapich2
 module load mvapich2/2.3.7-gcc-11.2.0
-// 加载 readline 库
+module load readline/8.2-gcc-11.2.0
 ```
 
 4. 编译安装 NEURON
@@ -406,7 +433,63 @@ cmake .. \
 -DPYTHON_EXECUTABLE=$(which python3) \
 -DCMAKE_INSTALL_PREFIX=/path/to/install/directory \
 -DCMAKE_C_COMPILER=$(which mpicc) \
--DCMAKE_CXX_COMPILER=$(which mpicxx) 
+-DCMAKE_CXX_COMPILER=$(which mpicxx) \
+-DReadline_INCLUDE_DIR=$HOME/software/readline/8.2-gcc-11.2.0/include/readline \
+-DReadline_LIBRARY=$HOME/software/readline/8.2-gcc-11.2.0/lib/libreadline.a
+
+# 上一条命令执行后会打印一下信息
+# -- 
+# -- Configured NEURON 8.2.3
+# -- 
+# -- You can now build NEURON using:
+# --   cmake --build . --parallel 8 [--target TARGET]
+# -- You might want to adjust the number of parallel build jobs for your system.
+# -- Some non-default targets you might want to build:
+# -- --------------+--------------------------------------------------------------
+# --  Target       |   Description
+# -- --------------+--------------------------------------------------------------
+# -- install       | Will install NEURON to: /GPUFS/nsccgz_zgchen_2/pangshzh/software/nrn/8.2.3
+# --               | Change the install location of NEURON using:
+# --               |   cmake <src_path> -DCMAKE_INSTALL_PREFIX=<install_path>
+# -- docs          | Build full docs. Calls targets: doxygen, notebooks, sphinx, notebooks-clean
+# -- uninstall     | Removes files installed by make install (todo)
+# -- --------------+--------------------------------------------------------------
+# --  Build option | Status
+# -- --------------+--------------------------------------------------------------
+# -- C COMPILER    | /GPUFS/nsccgz_zgchen_2/pangshzh/software/mvapich2/2.3.7-gcc-11.2.0/bin/mpicc
+# -- CXX COMPILER  | /GPUFS/nsccgz_zgchen_2/pangshzh/software/mvapich2/2.3.7-gcc-11.2.0/bin/mpicxx
+# -- BUILD_TYPE    | RelWithDebInfo (allowed: Custom;Debug;Release;RelWithDebInfo;Fast)
+# -- COMPILE FLAGS | -g  -O2 -Wno-write-strings
+# -- Shared        | ON
+# -- Default units | modern units (2019 nist constants)
+# -- MPI           | ON
+# --   DYNAMIC     | OFF
+# --   INC         | 
+# --   LIB         | MPI_LIBRARY-NOTFOUND
+# -- Python        | ON
+# --   EXE         | /GPUFS/nsccgz_zgchen_2/pangshzh/software/miniconda3/envs/nrn/bin/python3
+# --   INC         | /GPUFS/nsccgz_zgchen_2/pangshzh/software/miniconda3/envs/nrn/include/python3.10
+# --   LIB         | /GPUFS/nsccgz_zgchen_2/pangshzh/software/miniconda3/envs/nrn/lib/libpython3.10.so
+# --   MODULE      | ON
+# --   DYNAMIC     | OFF
+# -- Readline      | /GPUFS/nsccgz_zgchen_2/pangshzh/software/readline/8.2-gcc-11.2.0/lib/libreadline.a
+# -- RX3D          | ON
+# --   OptLevel    | 0
+# -- Interviews    | OFF
+# -- CoreNEURON    | ON
+# --   PATH        | /GPUFS/nsccgz_zgchen_2/pangshzh/src/nrn/external/coreneuron
+# --   LINK FLAGS  | -Lx86_64 -lcorenrnmech
+# --   Legacy Units| OFF
+# -- Tests         | OFF
+# -- --------------+--------------------------------------------------------------
+# --  See documentation : https://www.neuron.yale.edu/neuron/
+# -- --------------+--------------------------------------------------------------
+# -- 
+# -- Configuring done (72.3s)
+# -- Generating done (2.9s)
+# -- Build files have been written to: /GPUFS/nsccgz_zgchen_2/pangshzh/src/nrn/build
+
+# 检查无误了再进行下一步
 
 cmake --build . --parallel $(nproc) --target install
 ```
