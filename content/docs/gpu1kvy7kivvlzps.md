@@ -426,16 +426,17 @@ cd build
 
 cmake .. \
 -DNRN_ENABLE_INTERVIEWS=OFF \
--DCMAKE_BUILD_TYPE=RelWithDebInfo \
 -DNRN_ENABLE_PYTHON=ON \
 -DNRN_ENABLE_MPI=ON \
 -DNRN_ENABLE_CORENEURON=ON \
 -DPYTHON_EXECUTABLE=$(which python3) \
--DCMAKE_INSTALL_PREFIX=/path/to/install/directory \
+-DCMAKE_INSTALL_PREFIX=$HOME/software/nrn/8.2.3 \
 -DCMAKE_C_COMPILER=$(which mpicc) \
 -DCMAKE_CXX_COMPILER=$(which mpicxx) \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo \
 -DReadline_INCLUDE_DIR=$HOME/software/readline/8.2-gcc-11.2.0/include/readline \
--DReadline_LIBRARY=$HOME/software/readline/8.2-gcc-11.2.0/lib/libreadline.a
+-DReadline_LIBRARY=$HOME/software/readline/8.2-gcc-11.2.0/lib/libreadline.a \
+-DCMAKE_PREFIX_PATH=$HOME/software/ncurses/6.4-gcc-11.2.0
 
 # 上一条命令执行后会打印一下信息
 # -- 
@@ -494,5 +495,37 @@ cmake .. \
 cmake --build . --parallel $(nproc) --target install
 ```
 
-5. 
+5. 新建一个 `modulefiles`文件在目录 modulefiles/nrn 下，名为 `8.2.3-gcc-11.2.0`，如下所示：\
+```bash
+#%Module######################################################################
+##                                                                          ##
+##                        TianHe-2 software modulefile                      ##
+##                                                                          ##
+##############################################################################
 
+module-whatis "Yale Neuron Simulator v8.2.3"
+proc ModulesHelp { } {
+  puts stderr "The Yale Neuron Simulator is a software tool for neuron simulation and neuroscience research. "
+  puts stderr "This module loads Neuron version 7.6.7 and sets the relevant environment variables and package dependencies."
+}
+
+conflict nrn
+
+set prefix ~/pangshzh/software/nrn/8.2.3
+
+prepend-path PATH $prefix/x86_64/bin
+prepend-path LD_LIBRARY_PATH $prefix/x86_64/lib
+prepend-path PYTHONPATH $prefix/x86_64/lib/python
+```
+
+## 样例程序 - Circadian rhythm
+
+- [https://nrn.readthedocs.io/en/latest/rxd-tutorials/circadian.html](https://nrn.readthedocs.io/en/latest/rxd-tutorials/circadian.html)
+
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/59bc53981c0e7bdeb099843e1faa4837.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/25f3d3f6b9ccf3c067a0fd9a542c2d39.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/ef5419064b46943b47f5086efd58649c.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/2ee032d09b25e24f0a419099823d9579.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/4c28c4ec2f09bcd74c9a1d7951a464d5.png)
+
+到此，Neuron 8.2.3 的安装就结束了
