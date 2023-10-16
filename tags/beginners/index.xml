@@ -47,15 +47,18 @@ sbatch job.sh 集群安装了常见的计算软件，可以通过module指令导
       <pubDate>Wed, 11 Oct 2023 09:11:59 +0000</pubDate>
       
       <guid>https://nscc-neuro.github.io/nest-guide/docs/fqy4b2b061msp8gr/</guid>
-      <description>安装 jupyter lab link首先，下载并安装Miniconda。可以从Miniconda的官方网站（https://docs.conda.io/en/latest/miniconda.html）下载。 安装完成后，打开终端，创建一个新的 conda 环境，可以使用以下命令：
+      <description>安装 jupyter lab link首先，下载并安装Miniconda。可以从Miniconda的官方网站（https://docs.conda.io/en/latest/miniconda.html）下载。
+安装完成后，打开终端，创建一个新的 conda 环境，可以使用以下命令：
 conda create -n jupyter python=3.10 然后，激活新创建的环境
 source activate jupyter 在激活的环境中，使用如下的命令安装 jupyter lab
 conda install -c conda-forge jupyterlab 启动 jupyter lab link安装完成后，在计算节点（比如 gpu_v100分区下的gpu22节点) 上启动jupyter
 jupyter-lab --no-browser --port=8014 --ip=127.0.0.1 启动后如下： 以上启动完毕。
 建立隧道 link在本地电脑cmd输入如下代码，建立隧道。
-ssh -t -t nsccgz_zgchen_2@172.16.20.102 -L 8014:localhost:8014 ssh 89.72.32.22 -L 8014:127.0.0.1:8014 这里 nsccgz_zgchen_2 是中间登录节点的用户名，172.16.20.102是中间登录节点的IP， 89.72.32.22是计算节点的IP，8014是port号可以换成你自己喜欢的数字。 计算节点的ip一般是不知道的，可以通过如下方式获得：
-cat /etc/hosts | grep node/to/search 即可看到计算节点对应的IP。 建立隧道完成后，在本地浏览器输入如下代码，即可成功访问。
-https://127.0.0.1:8014 然后你就可以流畅地在上面使用 python 编写交互式程序了。</description>
+ssh -t -t nsccgz_zgchen_2@172.16.20.102 -L 8014:localhost:8014 -i nsccgz_zgchen_2.id ssh 89.72.32.22 -L 8014:127.0.0.1:8014 这里 nsccgz_zgchen_2 是中间登录节点的用户名，172.16.20.102是中间登录节点的IP， 89.72.32.22是计算节点的IP，8014是port号可以换成你自己喜欢的数字。
+计算节点的ip一般是不知道的，可以通过如下方式获得：
+cat /etc/hosts | grep node/to/search 即可看到计算节点对应的IP。
+建立隧道完成后，在本地浏览器输入如下代码（直接复制控制台输出的带 token 的 url)，即可成功访问。
+http://127.0.0.1:8014/lab?token=21681991a64b81f2651111c7015dfa948bc4f139bd9a110f 然后你就可以流畅地在上面使用 python 编写交互式程序了。</description>
     </item>
     
     <item>
