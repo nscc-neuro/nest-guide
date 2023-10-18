@@ -31,8 +31,10 @@
 - gcc 11.2.0
 - CMake 3.27.7-gcc-11.2.0
 - Cython 0.29.36
-- MPI openmpi 4.1.6-gcc-11.2.0
+- MPI mvapich2 2.3.7-gcc-11.2.0
 - Python 3.10.12
+- ncurses 6.4-gcc-11.2.0 fLIP
+- readline 8.2-gcc-11.2.0 fLIP
 ## 加载代理网络环境
 加载代理网络环境的脚本如下，如果你没有的话建议创建一个
 ```bash
