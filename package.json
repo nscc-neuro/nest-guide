@@ -7,6 +7,6 @@
     "clean": "elog clean"
   },
   "dependencies": {
-    "@elog/cli": "^0.7.2"
+    "@elog/cli": "^0.12.2"
   }
 }

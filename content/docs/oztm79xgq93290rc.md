@@ -16,7 +16,7 @@
 
 从 [Hillstone Secure Connect](https://www.hillstonenet.com.cn/support-and-training/hillstone-secure-connect/) 下载最新版的支持 SSL VPN 功能的客户端。
 
-![](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/55459dc850de5d7fa7b882904e3ee870.png)
+![](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/55459dc850de5d7fa7b882904e3ee870.png)
 
 输入 VPN 账号、密码和对应的 VPN 地址，登录后即可访问内网集群资源。
 ## 2. 登录集群

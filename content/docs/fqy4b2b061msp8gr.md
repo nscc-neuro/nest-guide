@@ -33,7 +33,7 @@ conda install -c conda-forge jupyterlab
 jupyter-lab --no-browser --port=8014 --ip=127.0.0.1
 ```
 启动后如下：
-![](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/7ead686bfee72aebfd423db6b5e8737a.png)
+![](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/7ead686bfee72aebfd423db6b5e8737a.png)
 以上启动完毕。
 
 ## 建立隧道
@@ -53,5 +53,5 @@ cat /etc/hosts | grep node/to/search
 ```bash
 http://127.0.0.1:8014/lab?token=21681991a64b81f2651111c7015dfa948bc4f139bd9a110f
 ```
-![](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/1821554a013fd0d7f6e2eae8aa997514.png)
+![](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/1821554a013fd0d7f6e2eae8aa997514.png)
 然后你就可以流畅地在上面使用 python 编写交互式程序了。

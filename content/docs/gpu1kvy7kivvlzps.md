@@ -524,10 +524,10 @@ prepend-path PYTHONPATH $prefix/x86_64/lib/python
 
 - [https://nrn.readthedocs.io/en/latest/rxd-tutorials/circadian.html](https://nrn.readthedocs.io/en/latest/rxd-tutorials/circadian.html)
 
-![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/59bc53981c0e7bdeb099843e1faa4837.png)
-![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/25f3d3f6b9ccf3c067a0fd9a542c2d39.png)
-![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/ef5419064b46943b47f5086efd58649c.png)
-![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/2ee032d09b25e24f0a419099823d9579.png)
-![image.png](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/4c28c4ec2f09bcd74c9a1d7951a464d5.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/59bc53981c0e7bdeb099843e1faa4837.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/25f3d3f6b9ccf3c067a0fd9a542c2d39.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/ef5419064b46943b47f5086efd58649c.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/2ee032d09b25e24f0a419099823d9579.png)
+![image.png](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/4c28c4ec2f09bcd74c9a1d7951a464d5.png)
 
 到此，Neuron 8.2.3 的安装就结束了

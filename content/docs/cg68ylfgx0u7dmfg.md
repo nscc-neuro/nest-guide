@@ -95,14 +95,14 @@ rsync [-Pr] username@ip_address:~/file ./
 ```
 ### Windows 用户使用客户端
 Window s用户可以使用客户端登录集群、上传数据，常见的客户端有Xshell+Xftp，[下载Xshell+Xftp](https://www.netsarang.com/zh/free-for-home-school/)时选择免费许可版，安装后通过以下方式登录集群；
-![](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/3a9e3393cf543e75b05ca818ae8be08e.png)
+![](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/3a9e3393cf543e75b05ca818ae8be08e.png)
 然后，点击用户身份验证，输入用户名，选择密钥文件，比如 `nsccgz_zgchen_2.id` 登录；
 
 下次登录集群时，点击"文件">>"打开"，找打对应的连接名称，选择连接即可。
 
 最后，登录后，在安装Xftp的前提下，打开文件传输按键，如下图所示；
 
-![](https://cuterwrite-1302252842.file.myqcloud.com//brain-sim/images/6b8995e36911595e7fe0c973be7ab046.png)
+![](https://cuterwrite-1302252842.file.myqcloud.com/brain-sim/images/6b8995e36911595e7fe0c973be7ab046.png)
 ## 提交作业
 ### sbatch 提交作业
 将整个计算过程，写到脚本中，通过 sbatch 指令提交到计算节点上执行；
